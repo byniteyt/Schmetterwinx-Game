@@ -24,31 +24,34 @@ public class Spell : MonoBehaviour
         switch (effect)
         {
             case EffectType.Damage:
-                // Reduce the target's health by power
-                break;
+                if (target.gameObject.CompareTag("Enemy"))
+                {
+                    Destroy(target);
+                    break;
+                }
+                Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
+                return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
                 break;
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
-                break;
+                return;
         }
+        Destroy(gameObject);
     }
-    private void OnMouseDown()
+    void OnMouseDown()
     {
-        Debug.Log("Spell selected: " + gameObject.name);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = transform.position.z;
+        originalPosition = transform.position;
     }
-    private void OnMouseEnter()
+
+    void OnMouseDrag()
     {
-        // Optionally, highlight the spell card or show additional info
-        Debug.Log("Hovering over spell: " + gameObject.name);
-    }
-    private void OnMouseDrag()
-    {
-        if (originalPosition == Vector2.zero)
-            originalPosition = transform.position;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector2(mousePosition.x, mousePosition.y);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = transform.position.z;
+        transform.position = mousePos;
     }
 
     private void OnMouseUp()
@@ -56,21 +59,18 @@ public class Spell : MonoBehaviour
         // Return the card to its original position
         transform.position = originalPosition;
         originalPosition = Vector2.zero;
-            Collider2D[] hit = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition),
-    LayerMask.GetMask("Battle"));
-            if (hit.Length != 0)
+        Collider2D[] hit = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (hit.Length != 0)
+        {
+            foreach (Collider2D h in hit)
             {
-                foreach (Collider2D h in hit)
+                if (h.gameObject.CompareTag("Enemy")|| h.gameObject.CompareTag("Player"))
                 {
-                    if (h.gameObject.CompareTag("Enemy"))
-                    {
-                        CastSpell(h.gameObject);
-                        Debug.Log($"Spell cast on {h.gameObject.name}");
-                        return;
-                    }
+                    CastSpell(h.gameObject);
+                    return;
                 }
-                Debug.Log("No valid target selected.");
             }
+            Debug.Log("No valid target selected.");
+        }
     }
-
 }
