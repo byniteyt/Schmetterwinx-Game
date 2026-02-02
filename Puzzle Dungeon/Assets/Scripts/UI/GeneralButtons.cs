@@ -6,7 +6,7 @@ public class GeneralButtons : MonoBehaviour
 {
     public void QuitGame()
     {
-        Debug.Log("Cerrando juego...");
+        Debug.Log("Closing game..."); // this way we can see in the console that the button works
         Application.Quit();
     }
     public void StartGame()
