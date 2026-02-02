@@ -26,6 +26,7 @@ public class Spell : MonoBehaviour
             case EffectType.Damage:
                 if (target.gameObject.CompareTag("Enemy"))
                 {
+                    GameManager.instance.ApplyEffect(casterClass);
                     Destroy(target);
                     break;
                 }
@@ -33,12 +34,15 @@ public class Spell : MonoBehaviour
                 return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
+                GameManager.instance.block += power;
+                GameManager.instance.ApplyEffect(casterClass);
                 break;
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
         }
-        Destroy(gameObject);
+        GetComponent<SpriteRenderer>().enabled = false;
+        //Destroy(gameObject);
     }
     void OnMouseDown()
     {

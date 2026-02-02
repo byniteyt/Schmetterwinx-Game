@@ -1,5 +1,8 @@
 using System;
-using Unity.VectorGraphics;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,18 +10,85 @@ public class GameManager : MonoBehaviour
 {
     public bool PlayerTurn = true;
     public float block;
-    public float damageRecieved;
+    public float damageReceived;
+    private bool[] playerAbilities;
+    private int enemies;
+    bool end = false;
+    private int playersForCast;
+    public static GameManager instance;
+
+    // UI objets
+    public TextMeshProUGUI defense;
+    public TextMeshProUGUI damage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        playerAbilities = new bool[Enum.GetNames(typeof(CharacterClass)).Length];
+        playersForCast = playerAbilities.Length;
+    }
+    public void ApplyEffect(CharacterClass caster)
+    {
+        // Implementation for applying the effect
+        int index = (int)caster;
+        playerAbilities[index] = true;
+        playersForCast--;
+        if (playersForCast == 0)
+        {
+            PlayerTurn = false;
+            enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            return;
+        }
+        foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card").Where(card => card.GetComponent<Spell>().casterClass == caster))
+        {
+            card.GetComponent<BoxCollider2D>().enabled = false;
+        }
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void EnemyAttacked()
     {
-        if (damageRecieved>block) {
-           SceneManager.LoadScene("GameOver");
+        enemies--;
+        if (enemies == 0 && damageReceived <= block)
+        {
+            PlayerTurn = true;
+            playersForCast = playerAbilities.Length;
+            for (int i = 0; i < playerAbilities.Length; i++)
+            {
+                playerAbilities[i] = false;
+            }
+            foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card"))
+            {
+                card.GetComponent<BoxCollider2D>().enabled = true;
+                card.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
+    }
+        // Update is called once per frame
+        void Update()
+    {
+        defense.text = "Block: " + block;
+        damage.text = "Damage: " + damageReceived;
+        if (damageReceived>block && !end) {
+            StartCoroutine(Wait());
+            end = true;
+        }
+        enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (enemies == 0)
+        {
+            SceneManager.LoadScene("YouWin");
+        }
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        SceneManager.LoadScene("GameOver");
     }
 }

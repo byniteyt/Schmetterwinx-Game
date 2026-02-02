@@ -16,12 +16,11 @@ public class EnemyBasic : MonoBehaviour
     void Start()
     { 
         hp = 10;
-
     }
 
     // Update is called once per frame
     void Update(){
-        Enemyturn = !gm.GetComponent<GameManager>().PlayerTurn;
+        Enemyturn = !GameManager.instance.PlayerTurn;
         int i=0;
         if (Enemyturn) {
             switch (intention[i]) {
@@ -31,8 +30,8 @@ public class EnemyBasic : MonoBehaviour
                 case 1:
                     EnemyBlock(i);
                     break;
-
             }
+            GameManager.instance.EnemyAttacked();
             i++;
         }
 
@@ -40,7 +39,8 @@ public class EnemyBasic : MonoBehaviour
     void EnemyAttack(int i) {
         if (Enemyturn && !hasPlayed)
         {
-            gm.GetComponent<GameManager>().damageRecieved += power[i];
+            Debug.Log("Enemy attacks for " + power[i] + " damage.");
+            GameManager.instance.damageReceived += power[i];
             hasPlayed = true;
         }
     }
