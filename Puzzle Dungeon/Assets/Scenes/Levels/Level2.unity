@@ -599,6 +599,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222846561}
   - component: {fileID: 222846560}
+  - component: {fileID: 222846562}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -620,7 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   PlayerTurn: 1
   block: 0
-  damageRecieved: 0
+  damageReceived: 0
   defense: {fileID: 887643693}
   damage: {fileID: 1435504098}
 --- !u!4 &222846561
@@ -638,6 +639,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &222846562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222846559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e380582a2944e89428c2b29b797e5711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWarning
+  text: {fileID: 1109836863311393934, guid: eae64ba412ba9ec49a6e18c81c6d860a, type: 3}
+  offset: {x: 0, y: -75}
 --- !u!1 &300680028
 GameObject:
   m_ObjectHideFlags: 0
