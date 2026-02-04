@@ -1,17 +1,21 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
+    public static GameObject info;
+    GameObject textInfo;
     public EffectType effect;           // Type of effect the spell has
     public int power;                   // Magnitude of the effect
     private GameObject target;          // Target of the spell. Protection spells will target the caster's team
     public CharacterClass casterClass;  // Class of the character casting the spell
     private Vector2 originalPosition = Vector2.zero;
-    void Start()
-    {
-    }
 
+    private void Start()
+    {
+        info = EnemyWarning.instance.text;
+    }
     public void CastSpell(GameObject target)
     {
         this.target = target;
@@ -53,6 +57,7 @@ public class Spell : MonoBehaviour
 
     void OnMouseDrag()
     {
+        textInfo.SetActive(false);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
         transform.position = mousePos;
@@ -76,5 +81,30 @@ public class Spell : MonoBehaviour
             }
             Debug.Log("No valid target selected.");
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        if (textInfo == null)
+        {
+            textInfo = Instantiate(info, FindAnyObjectByType<Canvas>().transform);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+            Vector3 position = new Vector3(0, 150, 0);
+            textInfo.transform.position = screenPos + position;
+            textInfo.GetComponent<TextMeshProUGUI>().text =
+                effect.ToString() + "\nPower: " + power.ToString();
+        }
+        else
+        {
+            textInfo.SetActive(true);
+        }
+
+            transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+    }
+
+    private void OnMouseExit()
+    {
+        textInfo.SetActive(false);
+        transform.localScale = new Vector3(1, 1, 1);
     }
 }
