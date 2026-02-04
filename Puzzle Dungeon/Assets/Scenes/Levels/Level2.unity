@@ -388,7 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
   hp: 0
   block: 0
-  gm: {fileID: 0}
+  gm: {fileID: 222846559}
   Enemyturn: 0
   power:
   - 7
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
   hp: 0
   block: 0
-  gm: {fileID: 0}
+  gm: {fileID: 222846559}
   Enemyturn: 0
   power:
   - 6
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
   effect: 0
-  power: 0
+  power: 2
   casterClass: 2
 --- !u!212 &872229602
 SpriteRenderer:
@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
   hp: 0
   block: 0
-  gm: {fileID: 0}
+  gm: {fileID: 222846559}
   Enemyturn: 0
   power:
   - 4
