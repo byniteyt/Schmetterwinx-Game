@@ -7,6 +7,7 @@ public class EnemyBasic : MonoBehaviour
     public float hp;
     public float block;
     public GameObject gm;
+    GameObject[] uiElements = new GameObject[2];
     public bool Enemyturn;
     public float[] power;
     public bool hasPlayed = false;
@@ -49,6 +50,28 @@ public class EnemyBasic : MonoBehaviour
         {
             block += power[i];
             hasPlayed= true;
+        }
+    }
+    public void AddUILife(GameObject life)
+    {
+        uiElements[0] = life;
+    }
+    public void AddUIAction(GameObject action)
+    {
+        uiElements[1] = action;
+    }
+    public GameObject[] GetUIElements()
+    {
+        return uiElements;
+    }
+    private void OnDestroy()
+    {
+        foreach (GameObject uiElement in uiElements)
+        {
+            if (uiElement != null)
+            {
+                Destroy(uiElement);
+            }
         }
     }
 }

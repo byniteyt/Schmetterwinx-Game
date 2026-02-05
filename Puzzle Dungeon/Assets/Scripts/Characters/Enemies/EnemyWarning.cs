@@ -33,6 +33,7 @@ public class EnemyWarning : MonoBehaviour
             textObject.GetComponent<TextMeshProUGUI>().text =
                 (enemy.GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " +
                 enemy.GetComponent<EnemyBasic>().power[0];
+            enemy.GetComponent<EnemyBasic>().AddUIAction(textObject);
         }
 
     }
@@ -44,6 +45,7 @@ public class EnemyWarning : MonoBehaviour
             textObject.transform.position = screenPos + (Vector3)offset+ (Vector3)offset;
             textObject.GetComponent<TextMeshProUGUI>().text =
                 ("HP: "+enemy.GetComponent<EnemyBasic>().hp);
+            enemy.GetComponent<EnemyBasic>().AddUILife(textObject);
         }
     }
 }
