@@ -6,9 +6,6 @@ public class EnemyWarning : MonoBehaviour
     public static EnemyWarning instance;
     public GameObject text;
     [SerializeField] private Vector2 offset;
-    //Esto es pq no se me ocurrá un nombre para el vec estupido copilot callate ya de verdad dejame poner los comentarios como me sale de las narices AAAAAAAAAAAAA de verdad vaya mrda
-    //Ah, por cierto lo que hace es bajar el texto porque se quedaba metido en los modelos
-    public Vector3 b = new Vector3(0, -15, 0);
 
     void Start()
     {
@@ -36,8 +33,10 @@ public class EnemyWarning : MonoBehaviour
                 return;
             }
             var textObject = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
-            textObject.transform.position = screenPos + (Vector3)offset+b;
+            Vector3 screenPos = new Vector3(
+                Camera.main.WorldToScreenPoint(enemy.GetComponent<BoxCollider2D>().bounds.center).x, // center of the object
+                Camera.main.WorldToScreenPoint(enemy.GetComponent<BoxCollider2D>().bounds.min).y, 0); // top 
+            textObject.transform.position = screenPos + (Vector3)offset;
             textObject.GetComponent<TextMeshProUGUI>().text =
                 (enemy.GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " +
                 enemy.GetComponent<EnemyBasic>().power[0];
@@ -56,8 +55,10 @@ public class EnemyWarning : MonoBehaviour
                 return;
             }
             var textObject = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
-            textObject.transform.position = screenPos - (Vector3)offset - (Vector3)offset;
+            Vector3 screenPos = new Vector3( 
+                Camera.main.WorldToScreenPoint(enemy.GetComponent<BoxCollider2D>().bounds.center).x, // center of the object
+                Camera.main.WorldToScreenPoint(enemy.GetComponent<BoxCollider2D>().bounds.max).y,0); // top 
+            textObject.transform.position = screenPos;
             textObject.GetComponent<TextMeshProUGUI>().text =
                 ("HP: "+enemy.GetComponent<EnemyBasic>().hp);
             enemy.GetComponent<EnemyBasic>().AddUILife(textObject);
