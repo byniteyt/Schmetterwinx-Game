@@ -30,9 +30,9 @@ public class GeneralButtons : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
-    public void LoadScene(SceneAsset scene)
+    public void LoadScene(string scene)
     {
         // this function is in case of we want to load a scene by its asset reference instead of create a new one
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(scene);
     }
 }

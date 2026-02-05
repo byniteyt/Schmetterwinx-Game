@@ -64,6 +64,15 @@ public class EnemyBasic : MonoBehaviour
     {
         return uiElements;
     }
+    public GameObject GetUILife()
+    {
+        return uiElements[0];
+    }
+
+    public GameObject GetUIAction()
+    {
+        return uiElements[1];
+    }
     private void OnDestroy()
     {
         foreach (GameObject uiElement in uiElements)
