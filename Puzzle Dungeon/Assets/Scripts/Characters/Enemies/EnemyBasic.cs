@@ -15,10 +15,10 @@ public class EnemyBasic : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    { 
-        hp = 10;
-    }
+    {
 
+    }
+    public EnemyBasic(GameObject a) { }
     // Update is called once per frame
     void Update(){
         Enemyturn = !GameManager.instance.PlayerTurn;

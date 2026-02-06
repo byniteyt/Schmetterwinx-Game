@@ -1,45 +1,31 @@
+using System.Globalization;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class Spell : MonoBehaviour
+public class CombinedSpell : Spell
 {
-    public static GameObject info;
-    GameObject textInfo;
-    public EffectType effect;           // Type of effect the spell has
-    public int power;                   // Magnitude of the effect
-    private GameObject target;          // Target of the spell. Protection spells will target the caster's team
-    public CharacterClass casterClass;  // Class of the character casting the spell
-    private Vector2 originalPosition = Vector2.zero;
-
-    public Spell(GameObject a) { 
-        this.transform.position = a.transform.position;
-        this.power=a.GetComponent<Spell>().power;
-        this.effect=a.GetComponent<Spell>().effect;
-        this.casterClass=a.GetComponent<Spell>().casterClass;
-    }
-    public Spell() { }
+    public GameObject targetC;
+    public EffectType effect2;
+    public CharacterClass casterClass2;
+    private Vector2 originalPositionC = Vector2.zero;
+    private GameObject textInfoC;
     private void Start()
     {
         info = EnemyWarning.instance.text;
     }
-    public void CastSpell(GameObject target)
+    new public void CastSpell(GameObject target)
     {
-        this.target = target;
-        if (!target.Equals("Card")) {
+        targetC = target;
         ApplyEffect();
     }
-        Spell objetivo =  new Spell (target);
-        Combine(objetivo);
-    }
-
     private void ApplyEffect()
     {
         // Apply the spell effect to the target
         switch (effect)
         {
             case EffectType.Damage:
-                if (target.gameObject.CompareTag("Enemy"))
+                if (targetC.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(casterClass);
                     //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
@@ -56,6 +42,26 @@ public class Spell : MonoBehaviour
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
         }
+        switch (effect2)
+        {
+            case EffectType.Damage:
+                if (targetC.gameObject.CompareTag("Enemy"))
+                {
+                    GameManager.instance.ApplyEffect(casterClass2);
+                    //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
+                    break;
+                }
+                Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
+                return;
+            case EffectType.Protection:
+                // Create a shield or increase damage resistance
+                GameManager.instance.block += power;
+                GameManager.instance.ApplyEffect(casterClass2);
+                break;
+            default:
+                Debug.LogWarning("Effect type not implemented yet.");
+                return;
+        }
         GetComponent<SpriteRenderer>().enabled = false;
         //Destroy(gameObject);
     }
@@ -63,12 +69,12 @@ public class Spell : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
-        originalPosition = transform.position;
+        originalPositionC = transform.position;
     }
 
     void OnMouseDrag()
     {
-        textInfo.SetActive(false);
+        textInfoC.SetActive(false);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
         transform.position = mousePos;
@@ -77,14 +83,14 @@ public class Spell : MonoBehaviour
     private void OnMouseUp()
     {
         // Return the card to its original position
-        transform.position = originalPosition;
-        originalPosition = Vector2.zero;
+        transform.position = originalPositionC;
+        originalPositionC = Vector2.zero;
         Collider2D[] hit = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (hit.Length != 0)
         {
             foreach (Collider2D h in hit)
             {
-                if (h.gameObject.CompareTag("Enemy")|| h.gameObject.CompareTag("Player"))
+                if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player"))
                 {
                     CastSpell(h.gameObject);
                     return;
@@ -96,36 +102,25 @@ public class Spell : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (textInfo == null)
+        if (textInfoC == null)
         {
-            textInfo = Instantiate(info, FindAnyObjectByType<Canvas>().transform);
+            textInfoC = Instantiate(info, FindAnyObjectByType<Canvas>().transform);
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
             Vector3 position = new Vector3(0, 150, 0);
-            textInfo.transform.position = screenPos + position;
-            textInfo.GetComponent<TextMeshProUGUI>().text =
-                effect.ToString() + "\nPower: " + power.ToString();
+            textInfoC.transform.position = screenPos + position;
+            textInfoC.GetComponent<TextMeshProUGUI>().text =   "this card has more than the combined might of its parts";
         }
         else
         {
-            textInfo.SetActive(true);
+            textInfoC.SetActive(true);
         }
 
-            transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
     }
 
     private void OnMouseExit()
     {
-        textInfo.SetActive(false);
+        textInfoC.SetActive(false);
         transform.localScale = new Vector3(1, 1, 1);
-    }
-    private void Combine(Spell carta) {
-        Spell Combinacion = Instantiate(carta, carta.transform.position, Quaternion.identity);
-        Combinacion.power = ((int)((carta.power + this.power)*1.2));
-
-        // new Spell() { effect = this.effect, power = this.power+carta.power, transform.position = carta.transform.position,};
-
-
-
-
     }
 }

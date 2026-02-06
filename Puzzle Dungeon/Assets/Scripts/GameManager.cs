@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     }
     public void EnemyAttacked()
     {
+
         enemies--;
         if (enemies == 0 && damageReceived <= block)
         {
@@ -83,7 +84,8 @@ public class GameManager : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (enemies == 0)
         {
-            SceneManager.LoadScene("YouWin");
+            SceneManager.LoadScene("YouWin");//Aquí habria que hacer que avance a la asiguiente escena, para que pase de nivel 1 a cinematica, 2 a cinematica, 3 a cinematica final y al modo infinito(postgame), y que ahí
+            //cdo mueras te lleve a la pantalla de puntuación, por cierto, copilot sigue tratando de autocompletar con sinsentidos
         }
     }
     IEnumerator Wait()
