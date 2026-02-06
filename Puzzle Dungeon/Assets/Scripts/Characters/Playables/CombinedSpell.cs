@@ -12,8 +12,8 @@ public class CombinedSpell : Spell
     private Vector2 originalPosition = Vector2.zero;
     private GameObject textInfoC;
 
-    public CombinedSpell(Spell a, Spell b)
-    {
+    public  void Fuuuuusion(Spell a, Spell b)
+    { 
         this.spellA = a;
         this.spellB = b;
         this.effect = a.effect;
@@ -21,6 +21,7 @@ public class CombinedSpell : Spell
         this.casterClass = a.casterClass;
         this.effect2 = b.effect;
         this.casterClass2 = b.casterClass;
+        this.originalPosition = b.transform.position;
     }
 
     private void Start()
@@ -40,7 +41,7 @@ public class CombinedSpell : Spell
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(casterClass);
-                    //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
+                    targetC.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
@@ -60,7 +61,7 @@ public class CombinedSpell : Spell
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(casterClass2);
-                    //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
+                    targetC.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
@@ -75,7 +76,6 @@ public class CombinedSpell : Spell
                 return;
         }
         GetComponent<SpriteRenderer>().enabled = false;
-        //Destroy(gameObject);
     }
     void OnMouseDown()
     {
