@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MarginForText
 {
+    #region Positions in Screen Space - Overlay
     public static Vector3 GetTopPosition(GameObject obj, Vector2 offset = default)
     {
         Vector3 screenPos = new Vector3(
@@ -16,7 +17,9 @@ public class MarginForText
                 Camera.main.WorldToScreenPoint(obj.GetComponent<BoxCollider2D>().bounds.min).y, 0);
         return screenPos - (Vector3)offset;
     }
+    #endregion
 
+    #region Canvas Space/ Real Space Conversions
     public static Vector3 GetRealTop(GameObject obj, Vector2 offset = default)
     {
         Vector3 worldPos = new Vector3(
@@ -32,4 +35,5 @@ public class MarginForText
                 obj.GetComponent<BoxCollider2D>().bounds.min.y, 0);
         return worldPos - (Vector3)offset;
     }
+    #endregion
 }
