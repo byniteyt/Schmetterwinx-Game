@@ -31,7 +31,7 @@ public class Spell : MonoBehaviour
                 if (target.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(casterClass);
-                    Destroy(target);
+                    target.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");

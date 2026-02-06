@@ -73,6 +73,18 @@ public class EnemyBasic : MonoBehaviour
     {
         return uiElements[1];
     }
+
+    public void TakeDamage(float damage)
+    {
+        float effectiveDamage = Mathf.Max(damage - block, 0);
+        hp -= effectiveDamage;
+        block = Mathf.Max(block - damage, 0);
+        Debug.Log("Enemy takes " + effectiveDamage + " damage. Remaining HP: " + hp);
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     private void OnDestroy()
     {
         foreach (GameObject uiElement in uiElements)
