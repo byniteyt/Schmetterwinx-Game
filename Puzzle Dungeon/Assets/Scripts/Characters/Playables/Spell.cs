@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    public static GameObject info;
     GameObject textInfo;
     public EffectType effect;           // Type of effect the spell has
     public int power;                   // Magnitude of the effect
@@ -12,26 +11,25 @@ public class Spell : MonoBehaviour
     public CharacterClass casterClass;  // Class of the character casting the spell
     private Vector2 originalPosition = Vector2.zero;
 
-    public Spell(GameObject a) { 
+    /*public Spell(GameObject a) { 
         this.transform.position = a.transform.position;
-        this.power=a.GetComponent<Spell>().power;
-        this.effect=a.GetComponent<Spell>().effect;
-        this.casterClass=a.GetComponent<Spell>().casterClass;
-    }
+        this.power = a.GetComponent<Spell>().power;
+        this.effect = a.GetComponent<Spell>().effect;
+        this.casterClass = a.GetComponent<Spell>().casterClass;
+    }*/
     public Spell() { }
     private void Start()
     {
-        info = EnemyWarning.instance.text;
     }
-    public void CastSpell(GameObject target)
+    /*public void CastSpell(GameObject target)
     {
         this.target = target;
-        if (!target.Equals("Card")) {
+        if (!target.CompareTag("Card")) {
         ApplyEffect();
     }
         Spell objetivo =  new Spell (target);
         Combine(objetivo);
-    }
+    }*/
 
     private void ApplyEffect()
     {
@@ -86,7 +84,9 @@ public class Spell : MonoBehaviour
             {
                 if (h.gameObject.CompareTag("Enemy")|| h.gameObject.CompareTag("Player"))
                 {
-                    CastSpell(h.gameObject);
+                    //CastSpell(h.gameObject);
+                    target = h.gameObject;
+                    ApplyEffect();
                     return;
                 }
             }
@@ -98,10 +98,8 @@ public class Spell : MonoBehaviour
     {
         if (textInfo == null)
         {
-            textInfo = Instantiate(info, FindAnyObjectByType<Canvas>().transform);
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 position = new Vector3(0, 150, 0);
-            textInfo.transform.position = screenPos + position;
+            textInfo = Instantiate(Resources.Load<GameObject>("UI/Text"), FindAnyObjectByType<Canvas>().transform);
+            textInfo.transform.position = MarginForText.GetTopPosition(gameObject, new Vector3(0, 30, 0));
             textInfo.GetComponent<TextMeshProUGUI>().text =
                 effect.ToString() + "\nPower: " + power.ToString();
         }
@@ -123,9 +121,6 @@ public class Spell : MonoBehaviour
         Combinacion.power = ((int)((carta.power + this.power)*1.2));
 
         // new Spell() { effect = this.effect, power = this.power+carta.power, transform.position = carta.transform.position,};
-
-
-
 
     }
 }

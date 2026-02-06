@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 3275b36a6679fbd41a555eafa97f83bd
+guid: ab57e470fff15474d91d6f5464aca249
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2478889539282618257
-    second: Samurai_0
+      213: 3590973474272637824
+    second: Samurai - copia_0
+  - first:
+      213: -2745571160951622346
+    second: Samurai - copia_1
+  - first:
+      213: -6435365273972866283
+    second: Samurai - copia_2
+  - first:
+      213: 2248457172447706270
+    second: Samurai - copia_3
+  - first:
+      213: -3678663438453854240
+    second: Samurai - copia_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Samurai_0
+      name: Samurai - copia_0
       rect:
         serializedVersion: 2
-        x: 183
-        y: 293
-        width: 1002
-        height: 1444
+        x: 208
+        y: 526
+        width: 858
+        height: 1175
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,30 +153,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f68b0a50917399dd0800000000000000
-      internalID: -2478889539282618257
+      spriteID: 083fedb5953b5d130800000000000000
+      internalID: 3590973474272637824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai_1
+      name: Samurai - copia_2
       rect:
         serializedVersion: 2
-        x: 1783
-        y: 348
-        width: 820
-        height: 874
+        x: 1338
+        y: 632
+        width: 1482
+        height: 1325
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c11c220b67c7a34438de6bc155513628
-      internalID: 1029035080
+      spriteID: 51386fc116df0b6a0800000000000000
+      internalID: -6435365273972866283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Samurai - copia_3
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 97
+        width: 304
+        height: 425
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9cbc60b2ef143f10800000000000000
+      internalID: 2248457172447706270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Samurai - copia_4
+      rect:
+        serializedVersion: 2
+        x: 1985
+        y: 106
+        width: 277
+        height: 377
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0efadb6d713c2fcc0800000000000000
+      internalID: -3678663438453854240
       vertices: []
       indices: 
       edges: []
@@ -173,7 +229,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b28318a306a8fd140bc6b5ad5d3c585f
+    spriteID: 338c9b2f5ad3c7a4796db99e2e0d1dc5
     internalID: 0
     vertices: []
     indices: 
@@ -181,12 +237,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Samurai_0: -2478889539282618257
-      Samurai_1: 1029035080
+      Samurai - copia_0: 3590973474272637824
+      Samurai - copia_1: -2745571160951622346
+      Samurai - copia_2: -6435365273972866283
+      Samurai - copia_3: 2248457172447706270
+      Samurai - copia_4: -3678663438453854240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

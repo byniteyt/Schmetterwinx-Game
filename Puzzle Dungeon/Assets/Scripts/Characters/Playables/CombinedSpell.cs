@@ -5,16 +5,28 @@ using UnityEngine.UIElements;
 
 public class CombinedSpell : Spell
 {
+    Spell spellA, spellB;
     public GameObject targetC;
     public EffectType effect2;
     public CharacterClass casterClass2;
-    private Vector2 originalPositionC = Vector2.zero;
+    private Vector2 originalPosition = Vector2.zero;
     private GameObject textInfoC;
+
+    public CombinedSpell(Spell a, Spell b)
+    {
+        this.spellA = a;
+        this.spellB = b;
+        this.effect = a.effect;
+        this.power = a.power + b.power; // Combine the power of both spells
+        this.casterClass = a.casterClass;
+        this.effect2 = b.effect;
+        this.casterClass2 = b.casterClass;
+    }
+
     private void Start()
     {
-        info = EnemyWarning.instance.text;
     }
-    new public void CastSpell(GameObject target)
+    public void CastSpell(GameObject target)
     {
         targetC = target;
         ApplyEffect();
@@ -69,7 +81,7 @@ public class CombinedSpell : Spell
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
-        originalPositionC = transform.position;
+        originalPosition = transform.position;
     }
 
     void OnMouseDrag()
@@ -83,8 +95,8 @@ public class CombinedSpell : Spell
     private void OnMouseUp()
     {
         // Return the card to its original position
-        transform.position = originalPositionC;
-        originalPositionC = Vector2.zero;
+        transform.position = originalPosition;
+        originalPosition = Vector2.zero;
         Collider2D[] hit = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (hit.Length != 0)
         {
@@ -104,10 +116,8 @@ public class CombinedSpell : Spell
     {
         if (textInfoC == null)
         {
-            textInfoC = Instantiate(info, FindAnyObjectByType<Canvas>().transform);
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 position = new Vector3(0, 150, 0);
-            textInfoC.transform.position = screenPos + position;
+            textInfoC = Instantiate(Resources.Load<GameObject>("UI/Text"), FindAnyObjectByType<Canvas>().transform);
+            textInfoC.transform.position = MarginForText.GetTopPosition(gameObject, new Vector3(0, 30, 0));
             textInfoC.GetComponent<TextMeshProUGUI>().text =   "this card has more than the combined might of its parts";
         }
         else

@@ -9,11 +9,12 @@ public class Dialogue : MonoBehaviour
     struct DialogueData
     {
         [TextArea(1, 5)] public string dialogue;
-        public GameObject character;    // The character associated with the dialogue, if needed
+        public Sprite character;    // The character associated with the dialogue, if needed
     }
     [SerializeField] private int index;
     [SerializeField, Range(0,0.4f)] private float delay;
     [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private GameObject dialogueImage;
     [SerializeField] private DialogueData[] dialogues;
     TextMeshProUGUI text;
 
@@ -47,6 +48,7 @@ public class Dialogue : MonoBehaviour
     private IEnumerator Show()
     {
         text.text = string.Empty;
+        dialogueImage.GetComponent<SpriteRenderer>().sprite = dialogues[index].character;
         foreach (char ch in dialogues[index].dialogue)
         {
             text.text += ch;
