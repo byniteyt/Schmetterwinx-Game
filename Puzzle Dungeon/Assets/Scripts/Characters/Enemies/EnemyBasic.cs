@@ -76,7 +76,7 @@ public class EnemyBasic : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        float effectiveDamage = Mathf.Max(damage - block, 0);
+        float effectiveDamage = Mathf.Max(damage - block, 1); // we want to ensure that the enemy takes at least 1 damage
         hp -= effectiveDamage;
         block = Mathf.Max(block - damage, 0);
         Debug.Log("Enemy takes " + effectiveDamage + " damage. Remaining HP: " + hp);
