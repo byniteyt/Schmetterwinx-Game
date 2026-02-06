@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
@@ -9,14 +11,17 @@ public class Dialogue : MonoBehaviour
     struct DialogueData
     {
         [TextArea(1, 5)] public string dialogue;
-        public Sprite character;    // The character associated with the dialogue, if needed
+        public Sprite character;        // The character that is talking
+        public string name;             // The name of the character talking
     }
-    [SerializeField] private int index;
+    private int index;
     [SerializeField, Range(0,0.4f)] private float delay;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject dialogueImage;
+    [SerializeField] private GameObject characterName;
     [SerializeField] private DialogueData[] dialogues;
     TextMeshProUGUI text;
+    [SerializeField] string sceneName;
 
     private void Start()
     {
@@ -40,7 +45,6 @@ public class Dialogue : MonoBehaviour
     }
     private void StartDialogue()
     {
-        dialoguePanel.SetActive(true);
         index = 0;
         StartCoroutine(Show());
         //Time.timeScale = 0f;
@@ -48,7 +52,8 @@ public class Dialogue : MonoBehaviour
     private IEnumerator Show()
     {
         text.text = string.Empty;
-        dialogueImage.GetComponent<SpriteRenderer>().sprite = dialogues[index].character;
+        dialogueImage.GetComponent<Image>().sprite = dialogues[index].character;
+        characterName.GetComponent<TextMeshProUGUI>().text = dialogues[index].name;
         foreach (char ch in dialogues[index].dialogue)
         {
             text.text += ch;
@@ -64,7 +69,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            dialoguePanel.SetActive(false);
+            SceneManager.LoadScene(sceneName);
             //Time.timeScale = 1f;
         }
     }

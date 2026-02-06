@@ -318,7 +318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23973451965d3724b8aeafa2d19ffff4, type: 3}
+  m_Sprite: {fileID: -5228952422212846936, guid: 51dbee5ed9536e944b6f5a7300c53bc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1129,21 +1129,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b6f07872e03d84e8e6a71de8e05ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
-  delay: 0.101
+  delay: 0.05
   dialoguePanel: {fileID: 786829101}
   dialogueImage: {fileID: 1367751846}
   characterName: {fileID: 354290031}
   dialogues:
-  - dialogue: Hey, how are you?
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
-  - dialogue: I'm fine, but don't talk to me, please. I don't like your religion.
+  - dialogue: 'Hey, who are you and where do you come from?!  '
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  - dialogue: 'I am a Wizzard and I''m from Naylen, the lost kingdom of the darkness. '
     character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Wizzard
-  - dialogue: Ok, you will go to hell!!
+  - dialogue: 'A WIZARD?! YOU SHOULD BE DEAD, YOU DON''T DESERVE THE HONOR OF HACHIMAN!
+      YOU CHEAT IN BATTLES. '
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  - dialogue: And you're telling me that, when all you know how to do is kill.
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizzard
+  - dialogue: SHUT UP! And who is the other one?
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  - dialogue: I'm a humble shaman of the lost tribe of Hulachenus, a tribe dedicated
+      to peace and general well-being.
     character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Shaman
-  sceneName: Level2
+  - dialogue: 'Uuuhh!! The well-being and peace!! I''m being sarcastic. It is very
+      useless. '
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
+  - dialogue: You won't say that when I have to protect you in battle.
+    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Shaman
+  - dialogue: I hate being forced to carry out this mission with you two. I hope
+      you don't get me into trouble.
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  sceneName: Level1
 --- !u!114 &2003968651
 MonoBehaviour:
   m_ObjectHideFlags: 0
