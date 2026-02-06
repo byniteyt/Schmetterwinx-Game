@@ -42,7 +42,7 @@ public class Spell : MonoBehaviour
                 if (target.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(casterClass);
-                    //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
+                    target.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
