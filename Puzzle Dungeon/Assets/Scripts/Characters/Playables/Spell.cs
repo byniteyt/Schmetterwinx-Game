@@ -12,6 +12,13 @@ public class Spell : MonoBehaviour
     public CharacterClass casterClass;  // Class of the character casting the spell
     private Vector2 originalPosition = Vector2.zero;
 
+    public Spell(GameObject a) { 
+        this.transform.position = a.transform.position;
+        this.power=a.GetComponent<Spell>().power;
+        this.effect=a.GetComponent<Spell>().effect;
+        this.casterClass=a.GetComponent<Spell>().casterClass;
+    }
+    public Spell() { }
     private void Start()
     {
         info = EnemyWarning.instance.text;
@@ -19,7 +26,11 @@ public class Spell : MonoBehaviour
     public void CastSpell(GameObject target)
     {
         this.target = target;
+        if (!target.Equals("Card")) {
         ApplyEffect();
+    }
+        Spell objetivo =  new Spell (target);
+        Combine(objetivo);
     }
 
     private void ApplyEffect()
@@ -31,7 +42,7 @@ public class Spell : MonoBehaviour
                 if (target.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(casterClass);
-                    Destroy(target);
+                    target.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
@@ -106,5 +117,15 @@ public class Spell : MonoBehaviour
     {
         textInfo.SetActive(false);
         transform.localScale = new Vector3(1, 1, 1);
+    }
+    private void Combine(Spell carta) {
+        Spell Combinacion = Instantiate(carta, carta.transform.position, Quaternion.identity);
+        Combinacion.power = ((int)((carta.power + this.power)*1.2));
+
+        // new Spell() { effect = this.effect, power = this.power+carta.power, transform.position = carta.transform.position,};
+
+
+
+
     }
 }

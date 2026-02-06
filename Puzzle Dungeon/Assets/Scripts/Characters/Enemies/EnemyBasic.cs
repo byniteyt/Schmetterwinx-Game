@@ -15,10 +15,10 @@ public class EnemyBasic : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    { 
-        hp = 10;
-    }
+    {
 
+    }
+    public EnemyBasic(GameObject a) { }
     // Update is called once per frame
     void Update(){
         Enemyturn = !GameManager.instance.PlayerTurn;
@@ -72,6 +72,18 @@ public class EnemyBasic : MonoBehaviour
     public GameObject GetUIAction()
     {
         return uiElements[1];
+    }
+
+    public void TakeDamage(float damage)
+    {
+        float effectiveDamage = Mathf.Max(damage - block, 1); // we want to ensure that the enemy takes at least 1 damage
+        hp -= effectiveDamage;
+        block = Mathf.Max(block - damage, 0);
+        Debug.Log("Enemy takes " + effectiveDamage + " damage. Remaining HP: " + hp);
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnDestroy()
     {

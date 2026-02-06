@@ -11,7 +11,7 @@ public enum EffectType
     Protection,     // Temporary shield or damage reduction
 
     // The next ones are for future implementations if it's possible
-    //Boost,          // Temporary increase the damage generated or received
+    Boost,          // Temporary increase the damage or shield generated or received
     //Reduction       // Temporary decrease the damage generated or received
 }
 
