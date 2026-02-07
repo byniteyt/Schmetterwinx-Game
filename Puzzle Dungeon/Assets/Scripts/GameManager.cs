@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         
         if (enemies == 0 && damageReceived <= block)
         {
-            if (SceneManager.GetActiveScene().Equals("InfiniteLevel")&& enemies==0) { 
+            if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")&& enemies==0) { 
             
                 Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, -0.779999971f, 0f), Quaternion.identity);
                 Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, 3.41000009f, 0f), Quaternion.identity);

@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Spell : MonoBehaviour
 {
@@ -33,9 +34,18 @@ public class Spell : MonoBehaviour
                 case EffectType.Damage:
                     if (target.gameObject.CompareTag("Enemy"))
                     {
-                        GameManager.instance.ApplyEffect(casterClass);
-                        target.GetComponent<EnemyBasic>().TakeDamage(power);
-                        break;
+                        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+                        {
+                            GameManager.instance.ApplyEffect(casterClass);
+                            target.GetComponent<EnemyInfinite>().TakeDamage(power);
+                            break;
+                        }
+                        else
+                        {
+                            GameManager.instance.ApplyEffect(casterClass);
+                            target.GetComponent<EnemyBasic>().TakeDamage(power);
+                            break;
+                        }
                     }
                     else
                     {
@@ -118,8 +128,6 @@ public class Spell : MonoBehaviour
                 Destroy(target);
                 Destroy(laggan);
             }
-            Destroy(laggan);
-            Destroy(target);
         }
         Destroy(gameObject);
     }

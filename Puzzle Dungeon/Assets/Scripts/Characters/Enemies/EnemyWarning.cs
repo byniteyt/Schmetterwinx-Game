@@ -17,8 +17,7 @@ public class EnemyWarning : MonoBehaviour
     }
     public void ShowEnemyIntention()
     {
-        if (SceneManager.GetActiveScene().Equals("InfiniteLevel"))
-        {
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")){
 
             if (actionText != null)
             {
@@ -50,7 +49,8 @@ public class EnemyWarning : MonoBehaviour
     }
     public void ShowEnemyHP()
     {
-        if (SceneManager.GetActiveScene().Equals("InfiniteLevel")){
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")) { 
+
             if (lifeText != null)
             {
                 // If enemy already has a UI element for the intention, update its text without creating another one
@@ -72,7 +72,7 @@ public class EnemyWarning : MonoBehaviour
 
     public void UpdateHealth()
     {
-        if (SceneManager.GetActiveScene().Equals("InfiniteLevel")){
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")){
             lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyInfinite>().hp}");
         }
         else
@@ -82,7 +82,7 @@ public class EnemyWarning : MonoBehaviour
     }
     public void UpdateIntention(int index)
     {
-        if (SceneManager.GetActiveScene().Equals("InfiniteLevel")){
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")){
             actionText.GetComponent<TextMeshProUGUI>().text =
                (GetComponent<EnemyInfinite>().intention[index] == 0 ? "Attack" : "Block") + ": " +
                GetComponent<EnemyInfinite>().power[index];

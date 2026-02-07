@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
@@ -41,9 +42,19 @@ public class CombinedSpell : MonoBehaviour
             case EffectType.Damage:
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
-                    GameManager.instance.ApplyEffect(spellA.casterClass);
-                    targetC.GetComponent<EnemyBasic>().TakeDamage(power);
-                    break;
+                    if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+                    {
+                        GameManager.instance.ApplyEffect(spellA.casterClass);
+                        targetC.GetComponent<EnemyInfinite>().TakeDamage(power);
+                        break;
+
+                    }
+                    else
+                    {
+                        GameManager.instance.ApplyEffect(spellA.casterClass);
+                        targetC.GetComponent<EnemyBasic>().TakeDamage(power);
+                        break;
+                    }
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
                 return;
@@ -71,12 +82,21 @@ public class CombinedSpell : MonoBehaviour
         {
             case EffectType.Damage:
                 if (targetC.gameObject.CompareTag("Enemy"))
-                {
-                    GameManager.instance.ApplyEffect(spellB.casterClass);
-                    targetC.GetComponent<EnemyBasic>().TakeDamage(power);
-                    break;
-                }
-                Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
+                    if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+                    {
+                        GameManager.instance.ApplyEffect(spellA.casterClass);
+                        targetC.GetComponent<EnemyInfinite>().TakeDamage(power);
+                        break;
+
+                    }
+                    else
+                    {
+                        GameManager.instance.ApplyEffect(spellA.casterClass);
+                        targetC.GetComponent<EnemyBasic>().TakeDamage(power);
+                        break;
+                    }
+        
+        Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
                 return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
