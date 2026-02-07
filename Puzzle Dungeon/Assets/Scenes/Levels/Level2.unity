@@ -2626,11 +2626,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Triangle (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2750512172987763007, guid: c4b44d41150a33945beb749adf7b2153, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3399766189869483936, guid: c4b44d41150a33945beb749adf7b2153, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1229218278804312961}
   m_SourcePrefab: {fileID: 100100000, guid: c4b44d41150a33945beb749adf7b2153, type: 3}
+--- !u!1 &1229218278804312960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3399766189869483936, guid: c4b44d41150a33945beb749adf7b2153, type: 3}
+  m_PrefabInstance: {fileID: 1229218278804312959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1229218278804312961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229218278804312960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
+  hp: 6
+  block: 0
+  gm: {fileID: 222846559}
+  Enemyturn: 0
+  power:
+  - 4
+  hasPlayed: 0
+  intention:
+  - 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
