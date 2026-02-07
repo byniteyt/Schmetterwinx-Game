@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
@@ -15,13 +16,17 @@ public class Spell : MonoBehaviour
 
     private void Start()
     {
+        originalPosition = transform.position;
 
-
+    }
+    public Vector2 getPosition() { 
+    return originalPosition;
     }
 
     private void ApplyEffect()
     {
-        if (target.gameObject.CompareTag("Enemy")|| target.gameObject.CompareTag("Player")||target.gameObject.CompareTag("Untagged")) {
+        if (target.gameObject.CompareTag("Enemy") || target.gameObject.CompareTag("Player") || target.gameObject.CompareTag("Untagged"))
+        {
             // Apply the spell effect to the target
             switch (effect)
             {
@@ -32,8 +37,11 @@ public class Spell : MonoBehaviour
                         target.GetComponent<EnemyBasic>().TakeDamage(power);
                         break;
                     }
-                    Debug.LogWarning("No puedes usar hechizos si no es un enemigo.");
-                    return;
+                    else
+                    {
+                        Debug.LogWarning("No puedes usar hechizos si no es un enemigo.");
+                        return;
+                    }
                 case EffectType.Protection:
                     // Create a shield or increase damage resistance
                     GameManager.instance.block += power;
@@ -54,13 +62,18 @@ public class Spell : MonoBehaviour
                     Debug.LogWarning("Effect type not implemented yet.");
                     return;
             }
-        } else {
+        }
+        else
+        {
             Spell laggan = (Spell)target.GetComponent<Spell>();
             if (!laggan.casterClass.Equals(this.casterClass))
             {
                 GameObject GurrenLaggan = new GameObject();
                 GurrenLaggan.AddComponent<SpriteRenderer>();
                 GurrenLaggan.AddComponent<CombinedSpell>().Fuuuuusion(this, laggan);
+                GurrenLaggan.AddComponent<BoxCollider2D>();
+                GurrenLaggan.GetComponent<BoxCollider2D>().size = new Vector2(1.586667f, 2.443333f);
+
                 Debug.LogWarning("GURREN LAGGAN");
                 switch (casterClass)
                 {
@@ -102,10 +115,11 @@ public class Spell : MonoBehaviour
                 }
 
             }
+            Destroy(laggan);
+            Destroy(target);
         }
-    
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
+    }
 
     void OnMouseDown()
     {
@@ -115,12 +129,12 @@ public class Spell : MonoBehaviour
     }
 
     void OnMouseDrag()
-    {
-        textInfo.SetActive(false);
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = transform.position.z;
-        transform.position = mousePos;
-    }
+        {
+            textInfo.SetActive(false);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = transform.position.z;
+            transform.position = mousePos;
+        }
 
     private void OnMouseUp()
     {
@@ -166,6 +180,8 @@ public class Spell : MonoBehaviour
         }
         else
         {
+            textInfo.GetComponent<TextMeshProUGUI>().text =
+                effect.ToString() + "\nPower: " + power.ToString();
             textInfo.SetActive(true);
         }
 

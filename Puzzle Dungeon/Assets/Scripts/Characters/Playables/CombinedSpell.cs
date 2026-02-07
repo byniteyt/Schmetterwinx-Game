@@ -1,13 +1,16 @@
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class CombinedSpell : MonoBehaviour
 {
     Spell spellA, spellB;
     public GameObject targetC;
     public EffectType effect2;
+    int power;
     public CharacterClass casterClass2;
     private Vector2 originalPosition = Vector2.zero;
     private GameObject textInfoC;
@@ -16,12 +19,17 @@ public class CombinedSpell : MonoBehaviour
     { 
         this.spellA = a;
         this.spellB = b;
-        spellA.power = (int)(spellA.power * 1.3f);
-        spellB.power = (int)(spellB.power * 1.3f);
+        int power = (int)((spellA.power + spellB.power) * 1.3);
+        // spellA.power = (int)(spellA.power * 1.3f);
+        // spellB.power = (int)(spellB.power * 1.3f);
+        spellA.power = power;
+        spellB.power = power;
+        this.originalPosition = b.getPosition();
     }
 
     private void Start()
     {
+        this.gameObject.transform.position = originalPosition;
     }
     public void CastSpell(GameObject target)
     {
@@ -47,6 +55,17 @@ public class CombinedSpell : MonoBehaviour
                 GameManager.instance.block += spellA.power;
                 GameManager.instance.ApplyEffect(spellA.casterClass);
                 break;
+            case EffectType.Boost:
+                float a = (GameObject.FindGameObjectsWithTag("Card").Length - 1);
+                int i = 0;
+                while (a > 0)
+                {
+                    GameObject.FindGameObjectsWithTag("Card")[i].GetComponent<Spell>().power += this.power;
+                    i++;
+                    a--;
+                }
+                GameManager.instance.ApplyEffect(spellA.casterClass);
+                break;
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
@@ -67,12 +86,23 @@ public class CombinedSpell : MonoBehaviour
                 GameManager.instance.block += spellB.power;
                 GameManager.instance.ApplyEffect(spellB.casterClass);
                 break;
+            case EffectType.Boost:
+                float a = (GameObject.FindGameObjectsWithTag("Card").Length - 1);
+                int i = 0;
+                while (a > 0)
+                {
+                    GameObject.FindGameObjectsWithTag("Card")[i].GetComponent<Spell>().power += this.power;
+                    i++;
+                    a--;
+                }
+                GameManager.instance.ApplyEffect(spellB.casterClass);
+                break;
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
         }
-        GetComponent<SpriteRenderer>().enabled = false;
-    }
+    Destroy(gameObject);
+}
     void OnMouseDown()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
