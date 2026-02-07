@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyWarning : MonoBehaviour
 {
@@ -16,13 +17,31 @@ public class EnemyWarning : MonoBehaviour
     }
     public void ShowEnemyIntention()
     {
-        if (actionText != null)
+        if (SceneManager.GetActiveScene().Equals("InfiniteLevel"))
         {
-            // If enemy already has a UI element for the intention, update its text without creating another one
-            actionText.GetComponent<TextMeshProUGUI>().text =(GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " +
-            GetComponent<EnemyBasic>().power[0];
-            return;
+
+            if (actionText != null)
+            {
+                // If enemy already has a UI element for the intention, update its text without creating another one
+                actionText.GetComponent<TextMeshProUGUI>().text = (GetComponent<EnemyInfinite>().intention[0] == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyInfinite>().power[0];
+                return;
+            }
+            actionText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
+            actionText.transform.position = MarginForText.GetBottomPosition(gameObject, new Vector3(0, 30, 0));
+            actionText.GetComponent<TextMeshProUGUI>().text =
+                (GetComponent<EnemyInfinite>().intention[0] == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyInfinite>().power[0];
+
+
         }
+            if (actionText != null)
+            {
+                 // If enemy already has a UI element for the intention, update its text without creating another one
+                    actionText.GetComponent<TextMeshProUGUI>().text =(GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " +
+                   GetComponent<EnemyBasic>().power[0];
+                  return;
+            }       
         actionText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
         actionText.transform.position = MarginForText.GetBottomPosition(gameObject, new Vector3(0, 30, 0));
         actionText.GetComponent<TextMeshProUGUI>().text =
@@ -31,6 +50,14 @@ public class EnemyWarning : MonoBehaviour
     }
     public void ShowEnemyHP()
     {
+        if (SceneManager.GetActiveScene().Equals("InfiniteLevel")){
+            if (lifeText != null)
+            {
+                // If enemy already has a UI element for the intention, update its text without creating another one
+                lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyInfinite>().hp}");
+                return;
+            }
+        }
         if (lifeText != null)
         {
             // If enemy already has a UI element for the intention, update its text without creating another one
@@ -45,13 +72,28 @@ public class EnemyWarning : MonoBehaviour
 
     public void UpdateHealth()
     {
-        lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyBasic>().hp}");
+        if (SceneManager.GetActiveScene().Equals("InfiniteLevel")){
+            lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyInfinite>().hp}");
+        }
+        else
+        {
+            lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyBasic>().hp}");
+        }
     }
     public void UpdateIntention(int index)
     {
-        actionText.GetComponent<TextMeshProUGUI>().text = 
-            (GetComponent<EnemyBasic>().intention[index] == 0 ? "Attack" : "Block") + ": " +
-            GetComponent<EnemyBasic>().power[index];
+        if (SceneManager.GetActiveScene().Equals("InfiniteLevel")){
+            actionText.GetComponent<TextMeshProUGUI>().text =
+               (GetComponent<EnemyInfinite>().intention[index] == 0 ? "Attack" : "Block") + ": " +
+               GetComponent<EnemyInfinite>().power[index];
+
+        }
+        else
+        {
+            actionText.GetComponent<TextMeshProUGUI>().text =
+                (GetComponent<EnemyBasic>().intention[index] == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyBasic>().power[index];
+        }
     }
 
     private void OnDestroy()

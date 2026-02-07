@@ -18,12 +18,7 @@ public class Spell : MonoBehaviour
     {
         originalPosition = transform.position;
 
-<<<<<<< HEAD
-    }
-    public Vector2 getPosition() { 
-    return originalPosition;
-=======
->>>>>>> Iván
+    
     }
     public Vector2 getPosition() {
         return originalPosition;
@@ -156,13 +151,7 @@ public class Spell : MonoBehaviour
             {
                 hit[i] = null;
             }
-<<<<<<< HEAD
-
             i++;
-=======
-            i++;
-        
->>>>>>> Iván
         }
         if (hit.Length != 0)
         {
