@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CombinedSpell : Spell
+public class CombinedSpell : MonoBehaviour
 {
     Spell spellA, spellB;
     public GameObject targetC;
@@ -12,15 +12,12 @@ public class CombinedSpell : Spell
     private Vector2 originalPosition = Vector2.zero;
     private GameObject textInfoC;
 
-    public CombinedSpell(Spell a, Spell b)
-    {
+    public  void Fuuuuusion(Spell a, Spell b)
+    { 
         this.spellA = a;
         this.spellB = b;
-        this.effect = a.effect;
-        this.power = a.power + b.power; // Combine the power of both spells
-        this.casterClass = a.casterClass;
-        this.effect2 = b.effect;
-        this.casterClass2 = b.casterClass;
+        spellA.power = (int)(spellA.power * 1.3f);
+        spellB.power = (int)(spellB.power * 1.3f);
     }
 
     private void Start()
@@ -34,48 +31,47 @@ public class CombinedSpell : Spell
     private void ApplyEffect()
     {
         // Apply the spell effect to the target
-        switch (effect)
+        switch (spellA.effect)
         {
             case EffectType.Damage:
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
-                    GameManager.instance.ApplyEffect(casterClass);
-                    //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
+                    GameManager.instance.ApplyEffect(spellA.casterClass);
+                    targetC.GetComponent<EnemyBasic>().TakeDamage(spellA.power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
                 return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
-                GameManager.instance.block += power;
-                GameManager.instance.ApplyEffect(casterClass);
+                GameManager.instance.block += spellA.power;
+                GameManager.instance.ApplyEffect(spellA.casterClass);
                 break;
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
         }
-        switch (effect2)
+        switch (spellB.effect)
         {
             case EffectType.Damage:
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
-                    GameManager.instance.ApplyEffect(casterClass2);
-                    //Hay que poner aquí que el enemigo pierda vida, en vaez de ser destruido, y que si llega a 0, entonces sea destruido(creo que esto último sería mejor como función dentro de los enemigos algo como if hp=0 Destroy()this))
+                    GameManager.instance.ApplyEffect(spellB.casterClass);
+                    targetC.GetComponent<EnemyBasic>().TakeDamage(spellB.power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
                 return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
-                GameManager.instance.block += power;
-                GameManager.instance.ApplyEffect(casterClass2);
+                GameManager.instance.block += spellB.power;
+                GameManager.instance.ApplyEffect(spellB.casterClass);
                 break;
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
         }
         GetComponent<SpriteRenderer>().enabled = false;
-        //Destroy(gameObject);
     }
     void OnMouseDown()
     {

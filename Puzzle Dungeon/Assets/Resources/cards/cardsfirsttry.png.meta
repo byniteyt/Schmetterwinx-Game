@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 84ad264507bda8c45873ba17f2e531cd
+guid: 380fe2bc8a0b4b349ad2bfb67a13547c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3443331769488569581
-    second: cardsfirsttry2_0
+      213: -7177999592030694541
+    second: cardsfirsttry_0
   - first:
-      213: -6688426388990369665
-    second: cardsfirsttry2_1
+      213: -106586439453741914
+    second: cardsfirsttry_1
   - first:
-      213: 2915477858496790135
-    second: cardsfirsttry2_2
+      213: -6675291594751439482
+    second: cardsfirsttry_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,20 +103,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -132,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cardsfirsttry2_0
+      name: cardsfirsttry_0
       rect:
         serializedVersion: 2
         x: 422
@@ -147,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31b01dbcff3d630d0800000000000000
-      internalID: -3443331769488569581
+      spriteID: 3739c17d66f926c90800000000000000
+      internalID: -7177999592030694541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cardsfirsttry2_1
+      name: cardsfirsttry_1
       rect:
         serializedVersion: 2
         x: 931
@@ -169,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7061e1d2afed23a0800000000000000
-      internalID: -6688426388990369665
+      spriteID: 6ac6c72b234558ef0800000000000000
+      internalID: -106586439453741914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cardsfirsttry2_2
+      name: cardsfirsttry_2
       rect:
         serializedVersion: 2
         x: 1470
@@ -191,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77eb73a5aabd57820800000000000000
-      internalID: 2915477858496790135
+      spriteID: 68d80ba69a99c53a0800000000000000
+      internalID: -6675291594751439482
       vertices: []
       indices: 
       edges: []
@@ -211,9 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cardsfirsttry2_0: -3443331769488569581
-      cardsfirsttry2_1: -6688426388990369665
-      cardsfirsttry2_2: 2915477858496790135
+      cardsfirsttry_0: -7177999592030694541
+      cardsfirsttry_1: -106586439453741914
+      cardsfirsttry_2: -6675291594751439482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
