@@ -134,7 +134,8 @@ public class Spell : MonoBehaviour
             {
                 hit[i] = null;
             }
-        
+
+            i++;
         }
         if (hit.Length != 0)
         {
@@ -144,7 +145,6 @@ public class Spell : MonoBehaviour
                 {
                     if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player") || h.gameObject.CompareTag("Card"))
                     {
-                        //CastSpell(h.gameObject);
                         target = h.gameObject;
                         ApplyEffect();
                         return;

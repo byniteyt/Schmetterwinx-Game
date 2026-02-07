@@ -63,6 +63,7 @@ public class EnemyBasic : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            return;
         }
         GetComponent<EnemyWarning>().UpdateHealth();
     }

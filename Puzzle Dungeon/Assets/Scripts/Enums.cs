@@ -12,7 +12,7 @@ public enum EffectType
 
     // The next ones are for future implementations if it's possible
     Boost,          // Temporary increase the damage or shield generated or received
-    Reduction       // Temporary decrease the damage generated or received
+    //Reduction       // Temporary decrease the damage generated or received
 }
 
 // Each possible class for the characters
@@ -21,4 +21,4 @@ public enum CharacterClass
     Warrior,
     Mage,
     Cleric
-}   
+}
