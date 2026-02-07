@@ -18,11 +18,16 @@ public class Spell : MonoBehaviour
     {
         originalPosition = transform.position;
 
+<<<<<<< HEAD
     }
     public Vector2 getPosition() { 
     return originalPosition;
+=======
+>>>>>>> Iván
     }
-
+    public Vector2 getPosition() {
+        return originalPosition;
+    }
     private void ApplyEffect()
     {
         if (target.gameObject.CompareTag("Enemy") || target.gameObject.CompareTag("Player") || target.gameObject.CompareTag("Untagged"))
@@ -75,16 +80,18 @@ public class Spell : MonoBehaviour
                 GurrenLaggan.GetComponent<BoxCollider2D>().size = new Vector2(1.586667f, 2.443333f);
 
                 Debug.LogWarning("GURREN LAGGAN");
+                GurrenLaggan.AddComponent<BoxCollider2D>();
+                GurrenLaggan.GetComponent<BoxCollider2D>().size = new Vector2(1.586667f, 2.443333f);
                 switch (casterClass)
                 {
                     case CharacterClass.Warrior:
                         switch (laggan.casterClass)
                         {
                             case CharacterClass.Mage:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
                                 break;
                             case CharacterClass.Cleric:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_3");
                                 break;
                         }
                         break;
@@ -92,10 +99,10 @@ public class Spell : MonoBehaviour
                         switch (laggan.casterClass)
                         {
                             case CharacterClass.Warrior:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
                                 break;
                             case CharacterClass.Cleric:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
                                 break;
                         }
                         break;
@@ -103,17 +110,18 @@ public class Spell : MonoBehaviour
                         switch (laggan.casterClass)
                         {
                             case CharacterClass.Warrior:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_3");
                                 break;
                             case CharacterClass.Mage:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
                                 break;
                         }
                         break;
                     default:
                         break;
                 }
-
+                Destroy(target);
+                Destroy(laggan);
             }
             Destroy(laggan);
             Destroy(target);
@@ -148,8 +156,13 @@ public class Spell : MonoBehaviour
             {
                 hit[i] = null;
             }
+<<<<<<< HEAD
 
             i++;
+=======
+            i++;
+        
+>>>>>>> Iván
         }
         if (hit.Length != 0)
         {

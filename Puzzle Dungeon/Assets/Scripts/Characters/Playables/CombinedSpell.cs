@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -9,6 +10,7 @@ public class CombinedSpell : MonoBehaviour
 {
     Spell spellA, spellB;
     public GameObject targetC;
+    int power;
     public EffectType effect2;
     int power;
     public CharacterClass casterClass2;
@@ -19,12 +21,20 @@ public class CombinedSpell : MonoBehaviour
     { 
         this.spellA = a;
         this.spellB = b;
+<<<<<<< HEAD
         int power = (int)((spellA.power + spellB.power) * 1.3);
         // spellA.power = (int)(spellA.power * 1.3f);
         // spellB.power = (int)(spellB.power * 1.3f);
         spellA.power = power;
         spellB.power = power;
         this.originalPosition = b.getPosition();
+=======
+        power = (int)((a.power + b.power) * 1.3);
+        //spellA.power = (int)(spellA.power * 1.3f);
+        //spellB.power = (int)(spellB.power * 1.3f);
+        originalPosition = b.getPosition();
+            transform.position = originalPosition;
+>>>>>>> Iván
     }
 
     private void Start()
@@ -45,14 +55,25 @@ public class CombinedSpell : MonoBehaviour
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(spellA.casterClass);
-                    targetC.GetComponent<EnemyBasic>().TakeDamage(spellA.power);
+                    targetC.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
                 return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
-                GameManager.instance.block += spellA.power;
+                GameManager.instance.block += power;
+                GameManager.instance.ApplyEffect(spellA.casterClass);
+                break;
+            case EffectType.Boost:
+                float a = (GameObject.FindGameObjectsWithTag("Card").Length - 1);
+                int i = 0;
+                while (a > 0)
+                {
+                    GameObject.FindGameObjectsWithTag("Card")[i].GetComponent<Spell>().power += power;
+                    i++;
+                    a--;
+                }
                 GameManager.instance.ApplyEffect(spellA.casterClass);
                 break;
             case EffectType.Boost:
@@ -76,14 +97,25 @@ public class CombinedSpell : MonoBehaviour
                 if (targetC.gameObject.CompareTag("Enemy"))
                 {
                     GameManager.instance.ApplyEffect(spellB.casterClass);
-                    targetC.GetComponent<EnemyBasic>().TakeDamage(spellB.power);
+                    targetC.GetComponent<EnemyBasic>().TakeDamage(power);
                     break;
                 }
                 Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
                 return;
             case EffectType.Protection:
                 // Create a shield or increase damage resistance
-                GameManager.instance.block += spellB.power;
+                GameManager.instance.block += power;
+                GameManager.instance.ApplyEffect(spellB.casterClass);
+                break;
+            case EffectType.Boost:
+                float a = (GameObject.FindGameObjectsWithTag("Card").Length - 1);
+                int i = 0;
+                while (a > 0)
+                {
+                    GameObject.FindGameObjectsWithTag("Card")[i].GetComponent<Spell>().power += power;
+                    i++;
+                    a--;
+                }
                 GameManager.instance.ApplyEffect(spellB.casterClass);
                 break;
             case EffectType.Boost:
@@ -101,8 +133,13 @@ public class CombinedSpell : MonoBehaviour
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;
         }
+<<<<<<< HEAD
     Destroy(gameObject);
 }
+=======
+        Destroy(gameObject);
+    }
+>>>>>>> Iván
     void OnMouseDown()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -120,18 +157,33 @@ public class CombinedSpell : MonoBehaviour
 
     private void OnMouseUp()
     {
+        int i = 0;
         // Return the card to its original position
         transform.position = originalPosition;
         originalPosition = Vector2.zero;
         Collider2D[] hit = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        while (hit.Contains(this.gameObject.GetComponent<Collider2D>()))
+        {
+            if (hit[i].Equals(gameObject.GetComponent<Collider2D>()))
+            {
+                hit[i] = null;
+            }
+            i++;
+
+        }
         if (hit.Length != 0)
         {
             foreach (Collider2D h in hit)
             {
-                if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player"))
+                if (h != null)
                 {
-                    CastSpell(h.gameObject);
-                    return;
+                    if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player") || h.gameObject.CompareTag("Card"))
+                    {
+                        //CastSpell(h.gameObject);
+                        targetC = h.gameObject;
+                        ApplyEffect();
+                        return;
+                    }
                 }
             }
             Debug.Log("No valid target selected.");

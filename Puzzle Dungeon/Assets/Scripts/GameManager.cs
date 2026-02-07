@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     bool end = false;
     private int playersForCast;
     public static GameManager instance;
+    public int turn = 0;
 
     // UI objets
     public TextMeshProUGUI defense;
@@ -56,9 +57,16 @@ public class GameManager : MonoBehaviour
     public void EnemyAttacked()
     {
 
-        enemies--;
+        
         if (enemies == 0 && damageReceived <= block)
         {
+            if (SceneManager.GetActiveScene().Equals("InfiniteLevel")&& enemies==0) { 
+            
+                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, -0.779999971f, -0.0299999993f), Quaternion.identity);
+                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, 3.41000009f, -0.0299999993f), Quaternion.identity);
+                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(5.6500001f, 1.35000002f, -0.0299999993f), Quaternion.identity);
+
+            }
             PlayerTurn = true;
             playersForCast = playerAbilities.Length;
             for (int i = 0; i < playerAbilities.Length; i++)
