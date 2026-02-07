@@ -159,7 +159,7 @@ public class Spell : MonoBehaviour
             {
                 if (h != null)
                 {
-                    if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player") || h.gameObject.CompareTag("Card"))
+                    if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player") || (h.gameObject.CompareTag("Card") && h.gameObject != this.gameObject))
                     {
                         target = h.gameObject;
                         ApplyEffect();
