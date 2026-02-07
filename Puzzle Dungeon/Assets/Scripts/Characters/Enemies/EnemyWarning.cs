@@ -7,49 +7,56 @@ public class EnemyWarning : MonoBehaviour
     GameObject text;
     GameObject lifeText;
     GameObject actionText;
+    private int turn;
     [SerializeField] private Vector2 offset;
 
     void Start()
     {
+        GameObject gm = GetComponent<EnemyInfinite>().gm;
+        turn = gm.GetComponent<GameManager>().turn;
         text = Resources.Load<GameObject>("UI/Text");
         ShowEnemyIntention();
         ShowEnemyHP();
     }
     public void ShowEnemyIntention()
     {
-        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")){
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+        {
 
             if (actionText != null)
             {
                 // If enemy already has a UI element for the intention, update its text without creating another one
-                actionText.GetComponent<TextMeshProUGUI>().text = (GetComponent<EnemyInfinite>().intention[0] == 0 ? "Attack" : "Block") + ": " +
-                GetComponent<EnemyInfinite>().power[0];
+                actionText.GetComponent<TextMeshProUGUI>().text = (GetComponent<EnemyInfinite>().intention[turn] == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyInfinite>().power[turn];
                 return;
             }
             actionText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
             actionText.transform.position = MarginForText.GetBottomPosition(gameObject, new Vector3(0, 30, 0));
             actionText.GetComponent<TextMeshProUGUI>().text =
-                (GetComponent<EnemyInfinite>().intention[0] == 0 ? "Attack" : "Block") + ": " +
-                GetComponent<EnemyInfinite>().power[0];
+                (GetComponent<EnemyInfinite>().intention[turn] == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyInfinite>().power[turn];
 
             return;
         }
+        else
+        {
             if (actionText != null)
             {
-                 // If enemy already has a UI element for the intention, update its text without creating another one
-                    actionText.GetComponent<TextMeshProUGUI>().text =(GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " +
-                   GetComponent<EnemyBasic>().power[0];
-                  return;
-            }       
-        actionText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
-        actionText.transform.position = MarginForText.GetBottomPosition(gameObject, new Vector3(0, 30, 0));
-        actionText.GetComponent<TextMeshProUGUI>().text =
-            (GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " +
-            GetComponent<EnemyBasic>().power[0];
+                // If enemy already has a UI element for the intention, update its text without creating another one
+                actionText.GetComponent<TextMeshProUGUI>().text = (GetComponent<EnemyBasic>().intention[0] == 0 ? "Attack" : "Block") + ": " + GetComponent<EnemyBasic>().power[turn];
+                return;
+            }
+            actionText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
+            actionText.transform.position = MarginForText.GetBottomPosition(gameObject, new Vector3(0, 30, 0));
+            actionText.GetComponent<TextMeshProUGUI>().text =
+                (GetComponent<EnemyBasic>().intention[turn] == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyBasic>().power[turn];
+        }
     }
     public void ShowEnemyHP()
     {
-        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")) { 
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+        {
 
             if (lifeText != null)
             {
@@ -63,16 +70,19 @@ public class EnemyWarning : MonoBehaviour
                 ("HP: " + GetComponent<EnemyInfinite>().hp);
             return;
         }
-        if (lifeText != null)
+        else
         {
-            // If enemy already has a UI element for the intention, update its text without creating another one
-            lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyBasic>().hp}");
-            return;
+            if (lifeText != null)
+            {
+                // If enemy already has a UI element for the intention, update its text without creating another one
+                lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyBasic>().hp}");
+                return;
+            }
+            lifeText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
+            lifeText.transform.position = MarginForText.GetTopPosition(gameObject, new Vector3(0, 30, 0));
+            lifeText.GetComponent<TextMeshProUGUI>().text =
+                ("HP: " + GetComponent<EnemyBasic>().hp);
         }
-        lifeText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
-        lifeText.transform.position = MarginForText.GetTopPosition(gameObject, new Vector3(0, 30, 0));
-        lifeText.GetComponent<TextMeshProUGUI>().text =
-            ("HP: " + GetComponent<EnemyBasic>().hp);
     }
 
     public void UpdateHealth()

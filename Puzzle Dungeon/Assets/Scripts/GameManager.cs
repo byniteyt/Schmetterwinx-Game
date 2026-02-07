@@ -12,11 +12,12 @@ public class GameManager : MonoBehaviour
     public float block;
     public float damageReceived;
     private bool[] playerAbilities;
-    private int enemies;
+    private int enemies=3;
     bool end = false;
     private int playersForCast;
     public static GameManager instance;
     public int turn = 0;
+    public int enemyplayed = 0;
 
     // UI objets
     public TextMeshProUGUI defense;
@@ -42,8 +43,7 @@ public class GameManager : MonoBehaviour
         int index = (int)caster;
         playerAbilities[index] = true;
         playersForCast--;
-        if (playersForCast == 0)
-        {
+        if (playersForCast == 0){
             PlayerTurn = false;
             enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
             return;
@@ -60,13 +60,6 @@ public class GameManager : MonoBehaviour
         
         if (enemies == 0 && damageReceived <= block)
         {
-            if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")&& enemies==0) { 
-            
-                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, -0.779999971f, 0f), Quaternion.identity);
-                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, 3.41000009f, 0f), Quaternion.identity);
-                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(5.6500001f, 1.35000002f, 0f), Quaternion.identity);
-
-            }
             PlayerTurn = true;
             playersForCast = playerAbilities.Length;
             for (int i = 0; i < playerAbilities.Length; i++)
@@ -76,13 +69,27 @@ public class GameManager : MonoBehaviour
             foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card"))
             {
                 card.GetComponent<BoxCollider2D>().enabled = true;
-                card.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
     }
         // Update is called once per frame
         void Update()
     {
+        if (enemyplayed ==GameObject.FindGameObjectsWithTag("Enemy").Length) {
+            PlayerTurn = true;
+            enemyplayed = 0;
+            foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card"))
+            {
+                card.GetComponent<BoxCollider2D>().enabled = true;
+            }
+        }
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel") && enemies==0){
+            Instantiate(Resources.Load<GameObject>("Prefabs/Infinito1"), new Vector3(7.42999983f, -0.779999971f, 0f), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Prefabs/Infinito1"), new Vector3(7.42999983f, 3.41000009f, 0f), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Prefabs/Infinito1"), new Vector3(5.6500001f, 1.35000002f, 0f), Quaternion.identity);
+            enemies = 3;
+        }
+
         defense.text = "Block: " + block;
         damage.text = "Damage: " + damageReceived;
         if (damageReceived>block && !end) {
