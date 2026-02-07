@@ -62,16 +62,17 @@ public class Spell : MonoBehaviour
                 GurrenLaggan.AddComponent<SpriteRenderer>();
                 GurrenLaggan.AddComponent<CombinedSpell>().Fuuuuusion(this, laggan);
                 Debug.LogWarning("GURREN LAGGAN");
+                //ESto congela el juego ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 switch (casterClass)
                 {
                     case CharacterClass.Warrior:
                         switch (laggan.casterClass)
                         {
                             case CharacterClass.Mage:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
                                 break;
                             case CharacterClass.Cleric:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_3");
                                 break;
                         }
                         break;
@@ -79,10 +80,10 @@ public class Spell : MonoBehaviour
                         switch (laggan.casterClass)
                         {
                             case CharacterClass.Warrior:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
                                 break;
                             case CharacterClass.Cleric:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
                                 break;
                         }
                         break;
@@ -90,10 +91,10 @@ public class Spell : MonoBehaviour
                         switch (laggan.casterClass)
                         {
                             case CharacterClass.Warrior:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_3");
                                 break;
                             case CharacterClass.Mage:
-                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
                                 break;
                         }
                         break;
