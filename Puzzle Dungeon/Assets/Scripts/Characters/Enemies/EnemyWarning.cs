@@ -12,8 +12,16 @@ public class EnemyWarning : MonoBehaviour
 
     void Start()
     {
-        GameObject gm = GetComponent<EnemyInfinite>().gm;
-        turn = gm.GetComponent<GameManager>().turn;
+        if (GetComponent<EnemyInfinite>())
+        {
+            GameObject gm = GetComponent<EnemyInfinite>().gm;
+            turn = gm.GetComponent<GameManager>().turn;
+        }
+        else if (GetComponent<EnemyBasic>())
+        {
+            GameObject gm = GetComponent<EnemyBasic>().gm;
+            turn = gm.GetComponent<GameManager>().turn;
+        }
         text = Resources.Load<GameObject>("UI/Text");
         ShowEnemyIntention();
         ShowEnemyHP();
@@ -21,7 +29,12 @@ public class EnemyWarning : MonoBehaviour
     private void Update()
     {
         UpdateHealth();
-        UpdateIntention(GetComponent<EnemyInfinite>().gm.GetComponent<GameManager>().turn);
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+        {
+            UpdateIntention(GetComponent<EnemyInfinite>().gm.GetComponent<GameManager>().turn);
+        }
+        else
+            UpdateIntention(GetComponent<EnemyBasic>().gm.GetComponent<GameManager>().turn);
     }
     public void ShowEnemyIntention()
     {

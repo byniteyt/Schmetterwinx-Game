@@ -41,7 +41,7 @@ public class EnemyBasic : MonoBehaviour
         if (Enemyturn && !hasPlayed)
         {
             Debug.Log("Enemy attacks for " + power[i] + " damage.");
-            GameManager.instance.damageReceived += power[i];
+            GameManager.instance.block -= power[i];
             hasPlayed = true;
         }
     }

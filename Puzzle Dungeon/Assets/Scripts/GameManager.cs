@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     // UI objets
     public TextMeshProUGUI defense;
-    public TextMeshProUGUI damage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -93,8 +92,7 @@ public class GameManager : MonoBehaviour
         }
 
         defense.text = "Block: " + block;
-        damage.text = "Damage: " + damageReceived;
-        if (damageReceived>block && !end) {
+        if (0>block && !end) {
             StartCoroutine(Wait());
             end = true;
         }
