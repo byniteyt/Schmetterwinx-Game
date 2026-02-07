@@ -36,7 +36,7 @@ public class EnemyWarning : MonoBehaviour
                 (GetComponent<EnemyInfinite>().intention[turn] == 0 ? "Attack" : "Block") + ": " +
                 GetComponent<EnemyInfinite>().power[turn];
 
-
+            return;
         }
         else
         {
@@ -64,6 +64,11 @@ public class EnemyWarning : MonoBehaviour
                 lifeText.GetComponent<TextMeshProUGUI>().text = ($"HP: {GetComponent<EnemyInfinite>().hp}");
                 return;
             }
+            lifeText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
+            lifeText.transform.position = MarginForText.GetTopPosition(gameObject, new Vector3(0, 30, 0));
+            lifeText.GetComponent<TextMeshProUGUI>().text =
+                ("HP: " + GetComponent<EnemyInfinite>().hp);
+            return;
         }
         else
         {
