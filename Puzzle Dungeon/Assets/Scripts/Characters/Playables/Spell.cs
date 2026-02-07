@@ -15,10 +15,12 @@ public class Spell : MonoBehaviour
 
     private void Start()
     {
-
+        originalPosition = transform.position;
 
     }
-
+    public Vector2 getPosition() {
+        return originalPosition;
+    }
     private void ApplyEffect()
     {
         if (target.gameObject.CompareTag("Enemy")|| target.gameObject.CompareTag("Player")||target.gameObject.CompareTag("Untagged")) {
@@ -62,7 +64,8 @@ public class Spell : MonoBehaviour
                 GurrenLaggan.AddComponent<SpriteRenderer>();
                 GurrenLaggan.AddComponent<CombinedSpell>().Fuuuuusion(this, laggan);
                 Debug.LogWarning("GURREN LAGGAN");
-                //ESto congela el juego ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                GurrenLaggan.AddComponent<BoxCollider2D>();
+                GurrenLaggan.GetComponent<BoxCollider2D>().size = new Vector2(1.586667f, 2.443333f);
                 switch (casterClass)
                 {
                     case CharacterClass.Warrior:
@@ -101,7 +104,8 @@ public class Spell : MonoBehaviour
                     default:
                         break;
                 }
-
+                Destroy(target);
+                Destroy(laggan);
             }
         }
     
@@ -135,6 +139,7 @@ public class Spell : MonoBehaviour
             {
                 hit[i] = null;
             }
+            i++;
         
         }
         if (hit.Length != 0)
