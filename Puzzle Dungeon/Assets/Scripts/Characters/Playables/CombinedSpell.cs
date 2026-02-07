@@ -8,10 +8,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CombinedSpell : MonoBehaviour
 {
-    Spell spellA, spellB;
+    public Spell spellA, spellB;
     public GameObject targetC;
     int power;
-    public EffectType effect2;
     private Vector2 originalPosition = Vector2.zero;
     private GameObject textInfoC;
 
