@@ -34,6 +34,7 @@ public class EnemyInfinite : MonoBehaviour
                     EnemyBlock(i);
                     break;
             }
+            gm.GetComponent<GameManager>().enemyplayed++;
             intention[i] = UnityEngine.Random.Range(0, 1);
             power[i]= UnityEngine.Random.Range(potencia,potencia+turno);
             GameManager.instance.EnemyAttacked();
