@@ -8,10 +8,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CombinedSpell : MonoBehaviour
 {
-    Spell spellA, spellB;
+    public Spell spellA, spellB;
     public GameObject targetC;
     int power;
-    public EffectType effect2;
     private Vector2 originalPosition = Vector2.zero;
     private GameObject textInfoC;
 
@@ -74,6 +73,25 @@ public class CombinedSpell : MonoBehaviour
                 }
                 GameManager.instance.ApplyEffect(spellA.casterClass);
                 break;
+             case EffectType.AOEDamage:
+                if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
+                {
+                    GameManager.instance.ApplyEffect(spellA.casterClass);
+                    foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyInfinite>().TakeDamage(power);
+                    }
+                    break;
+                }
+                else
+                {
+                    GameManager.instance.ApplyEffect(spellA.casterClass);
+                    foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyBasic>().TakeDamage(power);
+                    }
+                    break;
+                }
             default:
                 Debug.LogWarning("Effect type not implemented yet.");
                 return;

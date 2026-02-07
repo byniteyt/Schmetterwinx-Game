@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9091788692622307711}
   - component: {fileID: -2750512172987763007}
   m_Layer: 0
-  m_Name: Infnito1
+  m_Name: Infinito1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   hp: 0
   block: 0
   gm: {fileID: 0}
-  Enemyturn: 0
+  Enemyturn: 1
   power: []
   hasPlayed: 0
   intention: []
