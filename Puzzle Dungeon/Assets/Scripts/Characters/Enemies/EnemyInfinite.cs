@@ -8,55 +8,59 @@ public class EnemyInfinite : MonoBehaviour
     public float block;
     public GameObject gm;
     public bool Enemyturn;
-    public float[] power;
+    public float power;
     public bool hasPlayed = false;
-    public float[] intention;
-
+    public float intention;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+       intention = UnityEngine.Random.Range(0, 1);
+        power = UnityEngine.Random.Range(gm.GetComponent<GameManager>().turn, (int)(gm.GetComponent<GameManager> ().turn*1.5));
+    }
+    public void setGM(GameObject a) 
+    {
+       this.gm = a;
+        
     }
     public EnemyInfinite(GameObject a) { }
     // Update is called once per frame
     void Update(){
         Enemyturn = !GameManager.instance.PlayerTurn;
-        int i=0;
         if (Enemyturn) {
             gm.GetComponent<GameManager>().turn++;
             int turno = gm.GetComponent<GameManager>().turn;
             int potencia= (int)(turno * 1.2f);
-            switch (intention[i]) {
+            switch (intention) {
                 case 0:                
-                EnemyAttack(i);
+                EnemyAttack();
                     break;
                 case 1:
-                    EnemyBlock(i);
+                    EnemyBlock();
                     break;
             }
             gm.GetComponent<GameManager>().enemyplayed++;
-            intention[i] = UnityEngine.Random.Range(0, 1);
-            power[i]= UnityEngine.Random.Range(potencia,potencia+turno);
+            intention = UnityEngine.Random.Range(0, 1);
+            power= UnityEngine.Random.Range(potencia,potencia+turno);
             GameManager.instance.EnemyAttacked();
             
-            GetComponent<EnemyWarning>().UpdateIntention(i);
-            i++;
+            GetComponent<EnemyWarning>().UpdateIntention(turno);
+            
             GameManager.instance.PlayerTurn = true;
         }
 
     }
-    void EnemyAttack(int i) {
+    void EnemyAttack() {
         if (Enemyturn && !hasPlayed)
         {
-            Debug.Log("Enemy attacks for " + power[i] + " damage.");
-            GameManager.instance.damageReceived += power[i];
+            Debug.Log("Enemy attacks for " + power + " damage.");
+            GameManager.instance.damageReceived += power;
             hasPlayed = true;
         }
     }
-    void EnemyBlock(int i) { 
+    void EnemyBlock() { 
         if (Enemyturn && !hasPlayed)
         {
-            block += power[i];
+            block += power;
             hasPlayed= true;
         }
     }

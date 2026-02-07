@@ -18,6 +18,11 @@ public class EnemyWarning : MonoBehaviour
         ShowEnemyIntention();
         ShowEnemyHP();
     }
+    private void Update()
+    {
+        UpdateHealth();
+        UpdateIntention(GetComponent<EnemyInfinite>().gm.GetComponent<GameManager>().turn);
+    }
     public void ShowEnemyIntention()
     {
         if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel"))
@@ -26,15 +31,15 @@ public class EnemyWarning : MonoBehaviour
             if (actionText != null)
             {
                 // If enemy already has a UI element for the intention, update its text without creating another one
-                actionText.GetComponent<TextMeshProUGUI>().text = (GetComponent<EnemyInfinite>().intention[turn] == 0 ? "Attack" : "Block") + ": " +
-                GetComponent<EnemyInfinite>().power[turn];
+                actionText.GetComponent<TextMeshProUGUI>().text = (GetComponent<EnemyInfinite>().intention == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyInfinite>().power;
                 return;
             }
             actionText = Instantiate(text, FindAnyObjectByType<Canvas>().transform);
             actionText.transform.position = MarginForText.GetBottomPosition(gameObject, new Vector3(0, 30, 0));
             actionText.GetComponent<TextMeshProUGUI>().text =
-                (GetComponent<EnemyInfinite>().intention[turn] == 0 ? "Attack" : "Block") + ": " +
-                GetComponent<EnemyInfinite>().power[turn];
+                (GetComponent<EnemyInfinite>().intention == 0 ? "Attack" : "Block") + ": " +
+                GetComponent<EnemyInfinite>().power;
 
             return;
         }
@@ -99,8 +104,8 @@ public class EnemyWarning : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")){
             actionText.GetComponent<TextMeshProUGUI>().text =
-               (GetComponent<EnemyInfinite>().intention[index] == 0 ? "Attack" : "Block") + ": " +
-               GetComponent<EnemyInfinite>().power[index];
+               (GetComponent<EnemyInfinite>().intention == 0 ? "Attack" : "Block") + ": " +
+               GetComponent<EnemyInfinite>().power;
 
         }
         else
