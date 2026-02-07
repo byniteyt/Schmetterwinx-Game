@@ -757,14 +757,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
-  hp: 6
+  hp: 19
   block: 0
   gm: {fileID: 222846559}
   Enemyturn: 0
   power:
-  - 4
+  - 3
+  - 99
+  - 99
   hasPlayed: 0
   intention:
+  - 0
+  - 0
   - 0
 --- !u!61 &267400388
 BoxCollider2D:
@@ -2594,14 +2598,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
-  hp: 5
+  hp: 20
   block: 0
   gm: {fileID: 222846559}
   Enemyturn: 0
   power:
-  - 4
+  - 5
+  - 5
+  - 5
   hasPlayed: 0
   intention:
+  - 0
+  - 0
   - 0
 --- !u!114 &1377020004
 MonoBehaviour:
@@ -3433,14 +3441,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
-  hp: 6
+  hp: 18
   block: 0
   gm: {fileID: 222846559}
   Enemyturn: 0
   power:
-  - 4
+  - 2
+  - 2
+  - 2
   hasPlayed: 0
   intention:
+  - 0
+  - 0
   - 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
