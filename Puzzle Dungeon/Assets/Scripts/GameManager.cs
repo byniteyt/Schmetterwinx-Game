@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     bool end = false;
     private int playersForCast;
     public static GameManager instance;
+    public int turn = 0;
 
     // UI objets
     public TextMeshProUGUI defense;
