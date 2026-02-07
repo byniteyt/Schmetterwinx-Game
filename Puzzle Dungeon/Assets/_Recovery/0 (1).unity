@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b20c42380607747949f789c5c751a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
-  effect: 2
+  effect: 0
   power: 6
   casterClass: 2
 --- !u!1 &887643691

@@ -1,6 +1,8 @@
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Spell : MonoBehaviour
 {
@@ -19,58 +21,7 @@ public class Spell : MonoBehaviour
 
     private void ApplyEffect()
     {
-        if (target.gameObject.CompareTag("Card"))
-        {
-            Spell laggan = (Spell)target.GetComponent<Spell>();
-            if (!laggan.casterClass.Equals(this.casterClass))
-            {
-                GameObject Gurren = new GameObject();
-                Gurren.AddComponent<SpriteRenderer>();
-                Gurren.AddComponent<CombinedSpell>().Fuuuuusion(this, laggan);
-                Debug.LogWarning("GURREN LAGGAN");
-                switch (casterClass)
-                {
-                    case CharacterClass.Warrior:
-                        switch (laggan.casterClass)
-                        {
-                            case CharacterClass.Mage:
-                                Gurren.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
-                                break;
-                            case CharacterClass.Cleric:
-                                Gurren.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
-                                break;
-                        }
-                        break;
-                    case CharacterClass.Mage:
-                        switch (laggan.casterClass)
-                        {
-                            case CharacterClass.Warrior:
-                                Gurren.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
-                                break;
-                            case CharacterClass.Cleric:
-                                Gurren.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
-                                break;
-                        }
-                        break;
-                    case CharacterClass.Cleric:
-                        switch (laggan.casterClass)
-                        {
-                            case CharacterClass.Warrior:
-                                Gurren.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
-                                break;
-                            case CharacterClass.Mage:
-                                Gurren.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
-                                break;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-        }
-        else
-        {
+        if (target.gameObject.CompareTag("Enemy")|| target.gameObject.CompareTag("Player")||target.gameObject.CompareTag("Untagged")) {
             // Apply the spell effect to the target
             switch (effect)
             {
@@ -81,22 +32,81 @@ public class Spell : MonoBehaviour
                         target.GetComponent<EnemyBasic>().TakeDamage(power);
                         break;
                     }
-                    Debug.LogWarning("Cannot cast damage spell on non-enemy target.");
+                    Debug.LogWarning("No puedes usar hechizos si no es un enemigo.");
                     return;
                 case EffectType.Protection:
                     // Create a shield or increase damage resistance
                     GameManager.instance.block += power;
                     GameManager.instance.ApplyEffect(casterClass);
                     break;
-
+                case EffectType.Boost:
+                    float a = (GameObject.FindGameObjectsWithTag("Card").Length - 1);
+                    int i = 0;
+                    while (a > 0)
+                    {
+                        GameObject.FindGameObjectsWithTag("Card")[i].GetComponent<Spell>().power += power;
+                        i++;
+                        a--;
+                    }
+                    GameManager.instance.ApplyEffect(casterClass);
+                    break;
                 default:
                     Debug.LogWarning("Effect type not implemented yet.");
                     return;
             }
-            GetComponent<SpriteRenderer>().enabled = false;
+        } else {
+            Spell laggan = (Spell)target.GetComponent<Spell>();
+            if (!laggan.casterClass.Equals(this.casterClass))
+            {
+                GameObject GurrenLaggan = new GameObject();
+                GurrenLaggan.AddComponent<SpriteRenderer>();
+                GurrenLaggan.AddComponent<CombinedSpell>().Fuuuuusion(this, laggan);
+                Debug.LogWarning("GURREN LAGGAN");
+                switch (casterClass)
+                {
+                    case CharacterClass.Warrior:
+                        switch (laggan.casterClass)
+                        {
+                            case CharacterClass.Mage:
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
+                                break;
+                            case CharacterClass.Cleric:
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
+                                break;
+                        }
+                        break;
+                    case CharacterClass.Mage:
+                        switch (laggan.casterClass)
+                        {
+                            case CharacterClass.Warrior:
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_0");
+                                break;
+                            case CharacterClass.Cleric:
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
+                                break;
+                        }
+                        break;
+                    case CharacterClass.Cleric:
+                        switch (laggan.casterClass)
+                        {
+                            case CharacterClass.Warrior:
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_2");
+                                break;
+                            case CharacterClass.Mage:
+                                GurrenLaggan.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("cards/cardsfirsttry3_1");
+                                break;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+    
             Destroy(gameObject);
         }
-    }
+
     void OnMouseDown()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -114,20 +124,31 @@ public class Spell : MonoBehaviour
 
     private void OnMouseUp()
     {
+        int i = 0;
         // Return the card to its original position
         transform.position = originalPosition;
         originalPosition = Vector2.zero;
         Collider2D[] hit = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        while(hit.Contains(this.gameObject.GetComponent<Collider2D>())) {
+            if (hit[i].Equals(gameObject.GetComponent<Collider2D>()))
+            {
+                hit[i] = null;
+            }
+        
+        }
         if (hit.Length != 0)
         {
             foreach (Collider2D h in hit)
             {
-                if (h.gameObject.CompareTag("Enemy")|| h.gameObject.CompareTag("Player")|| h.gameObject.CompareTag("Card"))
+                if (h != null)
                 {
-                    //CastSpell(h.gameObject);
-                    target = h.gameObject;
-                    ApplyEffect();
-                    return;
+                    if (h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Player") || h.gameObject.CompareTag("Card"))
+                    {
+                        //CastSpell(h.gameObject);
+                        target = h.gameObject;
+                        ApplyEffect();
+                        return;
+                    }
                 }
             }
             Debug.Log("No valid target selected.");
