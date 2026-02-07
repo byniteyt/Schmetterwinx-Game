@@ -318,7 +318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23973451965d3724b8aeafa2d19ffff4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e744b7ce71f34144a6a24d9eaef3192, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1134,15 +1134,19 @@ MonoBehaviour:
   dialogueImage: {fileID: 1367751846}
   characterName: {fileID: 354290031}
   dialogues:
-  - dialogue: Hey, how are you?
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
-  - dialogue: I'm fine, but don't talk to me, please. I don't like your religion.
+  - dialogue: I'm not glad to say what I am going to say... but...
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  - dialogue: Wizard, your spells were useful in this level. Thank you.
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  - dialogue: Thanks, your weapon were useful too, maybe... I don't know... we could
+      try to mix them in one attack.
     character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Wizzard
-  - dialogue: Ok, you will go to hell!!
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
+  - dialogue: GOOD IDEA! LET'S TRY IT.
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
   sceneName: Level2
 --- !u!114 &2003968651
 MonoBehaviour:
