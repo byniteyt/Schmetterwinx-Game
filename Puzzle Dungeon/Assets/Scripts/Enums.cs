@@ -9,7 +9,7 @@ public enum EffectType
 {
     Damage,         // Direct damage to health
     Protection,     // Temporary shield or damage reduction
-
+    AOEDamage,
     // The next ones are for future implementations if it's possible
     Boost,          // Temporary increase the damage or shield generated or received
     //Reduction       // Temporary decrease the damage generated or received

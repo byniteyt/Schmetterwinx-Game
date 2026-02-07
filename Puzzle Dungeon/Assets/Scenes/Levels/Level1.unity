@@ -340,12 +340,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
-  hp: 6
+  hp: 13
   block: 0
   gm: {fileID: 222846559}
   Enemyturn: 0
   power:
-  - 4
+  - 5
+  - 5
   hasPlayed: 0
   intention:
   - 0
@@ -559,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b20c42380607747949f789c5c751a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
-  effect: 1
-  power: 5
+  effect: 2
+  power: 2
   casterClass: 1
 --- !u!212 &300680031
 SpriteRenderer:
@@ -713,8 +714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b20c42380607747949f789c5c751a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
-  effect: 0
-  power: 2
+  effect: 1
+  power: 4
   casterClass: 0
 --- !u!212 &350258088
 SpriteRenderer:
@@ -1092,7 +1093,7 @@ Transform:
   m_GameObject: {fileID: 872229599}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.74473, y: 0, z: 0}
+  m_LocalPosition: {x: -2.77, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1110,8 +1111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b20c42380607747949f789c5c751a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
-  effect: 2
-  power: 6
+  effect: 3
+  power: 4
   casterClass: 2
 --- !u!1 &876736047
 GameObject:
@@ -1680,7 +1681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
   effect: 0
-  power: 4
+  power: 3
   casterClass: 1
 --- !u!212 &1223310380
 SpriteRenderer:
@@ -1908,12 +1909,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
-  hp: 5
+  hp: 6
   block: 0
   gm: {fileID: 222846559}
   Enemyturn: 0
   power:
-  - 4
+  - 1
+  - 1
   hasPlayed: 0
   intention:
   - 0
@@ -2007,8 +2009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b20c42380607747949f789c5c751a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spell
-  effect: 1
-  power: 3
+  effect: 0
+  power: 1
   casterClass: 2
 --- !u!212 &1476883261
 SpriteRenderer:
@@ -2078,7 +2080,7 @@ Transform:
   m_GameObject: {fileID: 1476883258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.57, y: -0.0306, z: 0}
+  m_LocalPosition: {x: -4.84, y: -0.0306, z: 0}
   m_LocalScale: {x: 1, y: 1.0286387, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2439,15 +2441,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945cb92088d47b241bf95b1a66c7ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBasic
-  hp: 6
+  hp: 3
   block: 0
   gm: {fileID: 222846559}
   Enemyturn: 0
   power:
-  - 4
+  - 3
+  - 3
   hasPlayed: 0
-  intention:
-  - 0
+  intention: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
