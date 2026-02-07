@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
             enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
             return;
         }
-        foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card").Where(card => card.GetComponent<Spell>().casterClass == caster))
+        foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card").Where(card => card.GetComponent<Spell>().casterClass == caster || card.GetComponent<CombinedSpell>().spellA.casterClass == caster || card.GetComponent<CombinedSpell>().spellB.casterClass == caster))
         {
             card.GetComponent<BoxCollider2D>().enabled = false;
         }
