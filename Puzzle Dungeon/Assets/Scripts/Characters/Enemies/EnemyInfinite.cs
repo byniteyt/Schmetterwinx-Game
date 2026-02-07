@@ -25,7 +25,7 @@ public class EnemyInfinite : MonoBehaviour
         if (Enemyturn) {
             gm.GetComponent<GameManager>().turn++;
             int turno = gm.GetComponent<GameManager>().turn;
-            int potencia= (int)(turno * 1.2);
+            int potencia= (int)(turno * 1.2f);
             switch (intention[i]) {
                 case 0:                
                 EnemyAttack(i);
@@ -34,11 +34,13 @@ public class EnemyInfinite : MonoBehaviour
                     EnemyBlock(i);
                     break;
             }
-            intention[i] = UnityEngine.Random.Range(0, 2);
+            intention[i] = UnityEngine.Random.Range(0, 1);
             power[i]= UnityEngine.Random.Range(potencia,potencia+turno);
             GameManager.instance.EnemyAttacked();
-            i++;
+            
             GetComponent<EnemyWarning>().UpdateIntention(i);
+            i++;
+            GameManager.instance.PlayerTurn = true;
         }
 
     }

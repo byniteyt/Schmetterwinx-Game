@@ -60,13 +60,6 @@ public class GameManager : MonoBehaviour
         
         if (enemies == 0 && damageReceived <= block)
         {
-            if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel")&& enemies==0) { 
-            
-                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, -0.779999971f, 0f), Quaternion.identity);
-                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, 3.41000009f, 0f), Quaternion.identity);
-                Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(5.6500001f, 1.35000002f, 0f), Quaternion.identity);
-
-            }
             PlayerTurn = true;
             playersForCast = playerAbilities.Length;
             for (int i = 0; i < playerAbilities.Length; i++)
@@ -83,6 +76,17 @@ public class GameManager : MonoBehaviour
         // Update is called once per frame
         void Update()
     {
+        if (SceneManager.GetActiveScene().name.Equals("InfiniteLevel") && enemies ==0)
+        {
+            Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite");
+            Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, -0.779999971f, 0f), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(7.42999983f, 3.41000009f, 0f), Quaternion.identity);
+            Instantiate(Resources.Load<GameObject>("Prefabs/Enemies/EnemyInfinite"), new Vector3(5.6500001f, 1.35000002f, 0f), Quaternion.identity);
+            enemies = 3;
+        }
+        if()
+
+
         defense.text = "Block: " + block;
         damage.text = "Damage: " + damageReceived;
         if (damageReceived>block && !end) {
