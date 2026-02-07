@@ -1134,25 +1134,37 @@ MonoBehaviour:
   dialogueImage: {fileID: 1367751846}
   characterName: {fileID: 354290031}
   dialogues:
-  - dialogue: Shaman, thank you for protect us.
+  - dialogue: Nice work! The combination was much better that I spected.
     character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Samurai
-  - dialogue: 'I told you, and you said the well-being is useless? '
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
-  - dialogue: Yes, and I'm sorry. it was useful.
-    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Wizzard
-  - dialogue: Apologies accepted.
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
-  - dialogue: What if you mix your powers in a strongeer shield and maybe it damages
-      the enmies?
+  - dialogue: Yes, the same for me.
     character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Wizard
-  - dialogue: Ok, let's see what happen.
+  - dialogue: Look who are going to be friends... hehehe
     character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Shaman
+  - dialogue: I'm not sure that"friends" is the corect word, but teammates is accepted.
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
+  - dialogue: Now you two. Imagine a ultra definitive fire ball that kill every enemy
+      it touchs.
+    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Samurai
+  - dialogue: That would be amazing! Wanna try that?
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
+  - dialogue: It is very dangerous for me. What if we also die?
+    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Shaman
+  - dialogue: You're right, so how about a smaller and less dangerous version?
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
+  - dialogue: 'Ok, a little one it`s acceptable. '
+    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Shaman
+  - dialogue: Let's go!
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
   sceneName: Level3
 --- !u!114 &2003968651
 MonoBehaviour:

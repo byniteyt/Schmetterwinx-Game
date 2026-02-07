@@ -11,7 +11,7 @@ public class GeneralButtons : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("GameWorld");
+        SceneManager.LoadScene("InitialDialogue");
     }
     public void ReturnToMainMenu()
     {

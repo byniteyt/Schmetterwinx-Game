@@ -1165,7 +1165,7 @@ MonoBehaviour:
       you don't get me into trouble.
     character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Samurai
-  sceneName: Level1
+  sceneName: Tutorial
 --- !u!114 &2003968651
 MonoBehaviour:
   m_ObjectHideFlags: 0

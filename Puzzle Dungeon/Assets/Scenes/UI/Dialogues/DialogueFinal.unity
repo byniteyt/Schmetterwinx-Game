@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e744b7ce71f34144a6a24d9eaef3192, type: 3}
+  m_Sprite: {fileID: 7252968132828621741, guid: 946e95e6238da4345869a359888f28a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1134,31 +1134,26 @@ MonoBehaviour:
   dialogueImage: {fileID: 529425714}
   characterName: {fileID: 161777493}
   dialogues:
-  - dialogue: Shaman, thank you for your help. We couldn't have defeated them without
-      your support.
+  - dialogue: WE DID IT! I can't believe that.
     character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Samurai
-  - dialogue: 'I told you, and you said the well-being is useless? '
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
-  - dialogue: Yes, and I'm sorry. it was useful.
-    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Wizzard
-  - dialogue: Apologies accepted.
-    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Shaman
-  - dialogue: What if you mix your powers in a strongeer shield and maybe it damages
-      the enmies?
+  - dialogue: 'Me neither. Who would have thought? '
     character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Wizard
-  - dialogue: Ok, let's see what could happen. Maybe you finish as a more friendlier
-      person.
+  - dialogue: Maybe sometimes work with people that is not like you or even that
+      is the opposite pole is the best option.
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
+  - dialogue: I agree, little friend! We wrok perfectly even we started terrible.
     character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
     name: Shaman
-  - dialogue: '... I was starting to like you a lot '
-    character: {fileID: 455747187535858066, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
-    name: Samurai
-  sceneName: FinalLevel
+  - dialogue: 'Wanna keep fghting even there is no more future rewards? '
+    character: {fileID: -7232485609332265869, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Wizard
+  - dialogue: Ok, let's fight more.
+    character: {fileID: -4201197204689868772, guid: b9f841e16ee91d342b5cad90a7d1d425, type: 3}
+    name: Shaman
+  sceneName: InfiniteLevel
 --- !u!114 &1731064868
 MonoBehaviour:
   m_ObjectHideFlags: 0
